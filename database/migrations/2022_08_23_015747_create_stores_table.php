@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('city')->comment('市区町村');
             $table->string('address')->comment('それ以降');
             $table->date('open_time');
+            $table->date('close_time');
+            $table->integer('reserve_limit');
             $table->foreignId('genre_id');
             $table->timestamps();
         });

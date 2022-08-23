@@ -18,6 +18,7 @@ return new class extends Migration
             $table->date('reserve_date');
             $table->foreignId('store_id');
             $table->foreignId('user_id');
+            $table->foreignId('menu_id');
             $table->timestamps();
         });
     }

@@ -13,15 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('stores', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('email')->unique();
-            $table->char('gender', 5);
-            $table->string('tel');
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
+            $table->string('address_code')->comment('郵便番号');
+            $table->foreignId('area_id');
+            $table->string('city')->comment('市区町村');
+            $table->string('address')->comment('それ以降');
+            $table->date('open_time');
+            $table->foreignId('genre_id');
             $table->timestamps();
         });
     }
@@ -33,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('stores');
     }
 };

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Reserve;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 // use App\Http\Requests\StoreRequest;
 
 class ReserveController extends Controller
@@ -15,8 +17,11 @@ class ReserveController extends Controller
      */
     public function index()
     {
+        //各モデルごとのデータ取得ができたか確認用
+        $favoriteStore = User::favoriteStores();
         $reserves = Reserve::all();
-        return view('Store.index',compact('reserves'));
+        $user = Auth::user();
+        return view('Reserve.index',compact('reserves', 'user', 'favoriteStore'));
     }
 
     /**
@@ -26,7 +31,7 @@ class ReserveController extends Controller
      */
     public function create()
     {
-        return view('Store.create');
+        return view('Reserve.create');
     }
 
     /**

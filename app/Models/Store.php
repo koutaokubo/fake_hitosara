@@ -20,7 +20,7 @@ class Store extends Model
         'reserve_limit'
     ];
 
-    public function users() {
+    public function favoriteUsers() {
         return $this->belongsToMany(User::class);
     }
 }

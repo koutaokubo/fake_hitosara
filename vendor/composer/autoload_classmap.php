@@ -15,8 +15,14 @@ return array(
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
+<<<<<<< HEAD
     'App\\Http\\Controllers\\ReserveController' => $baseDir . '/app/Http/Controllers/ReserveController.php',
     'App\\Http\\Controllers\\StoreController' => $baseDir . '/app/Http/Controllers/StoreController.php',
+=======
+    'App\\Http\\Controllers\\FavoriteController' => $baseDir . '/app/Http/Controllers/FavoriteController.php',
+    'App\\Http\\Controllers\\HomeFormController' => $baseDir . '/app/Http/Controllers/HomeFormController.php',
+    'App\\Http\\Controllers\\ReserveController' => $baseDir . '/app/Http/Controllers/ReserveController.php',
+>>>>>>> a750a54c376eaa33ac7e5b5ebdb4dcd9514d7151
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',
     'App\\Http\\Middleware\\Authenticate' => $baseDir . '/app/Http/Middleware/Authenticate.php',
     'App\\Http\\Middleware\\EncryptCookies' => $baseDir . '/app/Http/Middleware/EncryptCookies.php',

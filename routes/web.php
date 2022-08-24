@@ -26,8 +26,3 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
-
-Route::get('/fake', function(){
-    return view('ReservForm.index');
-});
-

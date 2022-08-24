@@ -1,106 +1,94 @@
-<!DOCTYPE HTML>
-<html lang="ja">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>FAKE HITOSARA</title>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8'>
+        <title>FAKE HITOSARA</title>
+        <style>body {padding: 10px;}</style>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- bootstrap.css を読み込みする -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
 
-<!-- Bootstrapの読み込み -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
-
-<style type="text/css">
-/* スマホとタブレットのみに適用 */
-@media screen and (max-width: 768px) {
-	.side-collapse-container{
-		width:100%;
-		position:relative;
-		left:0;
-		transition:left .4s;
-	}
-	.side-collapse-container.out{
-		left:200px;
-	}
-	.side-collapse {
-		top:50px;
-		bottom:0;
-		left:0;
-		width:200px;
-		position:fixed;
-		overflow:hidden;
-		transition:width .4s;
-	}
-	.side-collapse.in {
-		width:0;
-	}
-}
-</style>
-
-</head>
 
 <body>
-<header>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!------ Include the above in your HEAD tag ---------->
 
-<nav class="navbar navbar-inverse">
-	<div class="container">
+    <nav class="navbar navbar-icon-top navbar-expand-md navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">FAKE HITOSARA</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-		<!-- nav -->
-		<div class="navbar-header">
-			<button data-toggle="collapse-side" data-target=".side-collapse" data-target-2=".side-collapse-container" type="button" class="navbar-toggle pull-left">
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="#">
-				FAKE HITOSARA
-			</a>
-		</div>
-		<div class="navbar-inverse side-collapse in">
-			<nav role="navigation" class="navbar-collapse">
-				<ul class="nav navbar-nav">
-					<li><a href="#Home">ホーム</a></li>
-					<li><a href="#users">FAKE HITOSARAとは</a></li>
-					<li><a href="#">マイページ</a></li>
-					<li><a href="#">Contact</a></li>
-                    @if ($user->owner ==True)
-                    <li><a href="#">店舗情報登録</a></li>
-                    @endif
-				</ul>
-			</nav>
-		</div>
-		<!-- /nav -->
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/home">
+              <i class="fa fa-home"></i>
+              ホーム
+              <span class="sr-only">(current)</span>
+              </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              お店をさがす
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <i class="fa fa-envelope-o">
+                <span class="badge badge-warning">11</span>
+              </i>
+              予約の確認
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <i class="fa fa-envelope-o">
+              </i>
+              お問い合わせ
+            </a>
+          </li>
+        </ul>
+        <ul class="navbar-nav ">
+        @if ($user != null)
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fa fa-envelope-o">
+              </i>
+              {{$user->name}}さん
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">プロフィール</a>
+                <a class="dropdown-item" href="#">お気に入り店舗</a>
+                @if ($user != null && $user->owner ==True)
+                <a class="dropdown-item" href="#">
+                    店舗情報登録</a>
+                @endif
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">ログアウト</a>
+            </div>
+          </li>
+        @elseif ($user == null)
+            <li class="nav-item">
+            <a class="nav-link" href="#">
+                ログイン
+            </a>
+            </li>
+        @endif
+        </ul>
+      </div>
+    </nav>
 
-	</div>
-</nav>
+    <hr>
 
-</header>
+    @yield('content')
 
-<!-- メインのコンテンツエリア -->
-<section>
-<article></article>
-</section>
-<!-- /メインのコンテンツエリア -->
-
-<footer>
-</footer>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
-
-
-
-<!-- BootstrapとjQueryの読み込み -->
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script type="text/javascript">
-	$(document).ready(function() {
-	var sideslider = $('[data-toggle=collapse-side]');
-	var sel = sideslider.attr('data-target');
-	var sel2 = sideslider.attr('data-target-2');
-	sideslider.click(function(event){
-        $(sel).toggleClass('in');
-		$(sel2).toggleClass('out');
-	});
-});
-</script>
-
-@yield('content')
 </html>

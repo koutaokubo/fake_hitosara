@@ -27,4 +27,5 @@ Route::middleware([
     })->name('dashboard');
 });
 
+
 Route::resource('/store', ReserveController::class);

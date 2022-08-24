@@ -62,7 +62,7 @@
 					<li><a href="#users">FAKE HITOSARAとは</a></li>
 					<li><a href="#">マイページ</a></li>
 					<li><a href="#">Contact</a></li>
-                    @if (==True)
+                    @if ($user->owner ==True)
                     <li><a href="#">店舗情報登録</a></li>
                     @endif
 				</ul>

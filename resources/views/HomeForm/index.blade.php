@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container">
-<form class="container-fluid me-2" action="/MessageBoard/index" method="POST">
+<form class="container-fluid me-2" action="/home" method="get">
     <div class="form-group">
         <label for="exampleFormControlSelect1">ジャンル</label>
         <select class="form-control" id="exampleFormControlSelect1">
@@ -23,7 +23,14 @@
         </select>
       </div>
       <div>
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          {{-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"> --}}
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name=search value="{{ $search }}">
+          {{-- <button class="btn btn-outline-success" type="submit">Search</button> --}}
+          @if ($Search_store)
+            @foreach ($Search_store as $item)
+              <p>{{$item->name}}</p>
+            @endforeach
+          @endif
           <button class="btn btn-outline-success" type="submit">Search</button>
       </div>
     @csrf

@@ -15,7 +15,7 @@ class Store extends Model
         'open_time'
     ];
 
-    public function users() {
+    public function favoriteUsers() {
         return $this->belongsToMany(User::class);
     }
 }

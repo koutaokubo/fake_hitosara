@@ -25,6 +25,10 @@
         </select>
       </div>
       <div>
+<<<<<<< HEAD
+=======
+          {{-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"> --}}
+>>>>>>> c01fb2cf7bfdc879c0798454b8fd3665838ce254
           <form aciton=""method="GET">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name=search value="{{ $search }}">
           <button class="btn btn-outline-success" type="submit">Search</button>

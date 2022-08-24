@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ReserveController;
+use App\Http\Controllers\HomeFormController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,4 +29,11 @@ Route::middleware([
 });
 
 
-Route::resource('/store', ReserveController::class);
+Route::resource('/reserve', ReserveController::class)
+    ->names(['index' => 'reserve.index',
+            'create' => 'reserve.create',
+            'store' => 'reserve.store'
+            ])
+    ->middleware('auth');
+
+Route::get('/home', [HomeFormController::class, 'index']);

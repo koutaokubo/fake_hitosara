@@ -58,10 +58,13 @@
 		<div class="navbar-inverse side-collapse in">
 			<nav role="navigation" class="navbar-collapse">
 				<ul class="nav navbar-nav">
-					<li><a href="#Home">Home</a></li>
-					<li><a href="#users">Users</a></li>
-					<li><a href="#">About</a></li>
+					<li><a href="#Home">ホーム</a></li>
+					<li><a href="#users">FAKE HITOSARAとは</a></li>
+					<li><a href="#">マイページ</a></li>
 					<li><a href="#">Contact</a></li>
+                    @if ($user->owner ==True)
+                    <li><a href="#">店舗情報登録</a></li>
+                    @endif
 				</ul>
 			</nav>
 		</div>

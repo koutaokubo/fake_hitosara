@@ -10,6 +10,7 @@
     @foreach ($reserves as $reserve)
         <p>{{$reserve->id}}</p>
         <p>{{$user->name}}</p>
+        <p>{{$favoriteStore}}</p>
     @endforeach
 </body>
 </html>

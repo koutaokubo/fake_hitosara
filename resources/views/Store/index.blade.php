@@ -9,6 +9,7 @@
 <body>
     @foreach ($reserves as $reserve)
         <p>{{$reserve->id}}</p>
+        <p>{{$user->name}}</p>
     @endforeach
 </body>
 </html>

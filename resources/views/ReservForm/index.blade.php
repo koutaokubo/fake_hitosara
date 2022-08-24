@@ -25,7 +25,8 @@
         </select>
       </div>
       <div>
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <form aciton=""method="GET">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name=search value="{{ $search }}">
           <button class="btn btn-outline-success" type="submit">Search</button>
       </div>
     @csrf

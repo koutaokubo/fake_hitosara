@@ -7,14 +7,32 @@
     <title>Document</title>
 </head>
 <body>
-    <form method="post" action="/Store">
+    <form method="post" action="/store/confirm" name="action" value="confirm">
         @csrf
         <div>
              名前<input id="name" class="block mt-1 w-full" type="text" name="name"/>
         </div>
         <div>
-           郵便番号 <input id="address_code" class="block mt-1 w-full" type="text" name="address_cpde"/>
+           郵便番号 <input id="address_code" class="block mt-1 w-full" type="text" name="address_code"/>
        </div>
+       <div class="form-group">
+        <label for="exampleFormControlSelect1">ジャンル</label>
+        <select class="form-control" id="exampleFormControlSelect1" name="genre_id">
+          <option value="">-</option>
+          @foreach ($genres as $foods)
+          <option>{{ $foods->food_genre }}</option>
+          @endforeach
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="exampleFormControlSelect1">エリア</label>
+        <select class="form-control" id="exampleFormControlSelect1" name="area_id">
+          <option value="">-</option>
+          @foreach ($area as $city)
+          <option>{{ $city->area_name }}</option>
+          @endforeach
+        </select>
+      </div>
        <div>
         都道府県<input id="city" class="block mt-1 w-full" type="text" name="city"/>
    </div>

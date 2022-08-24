@@ -28,6 +28,6 @@ Route::middleware([
     })->name('dashboard');
 });
 
-
+Route::post('/store/confirm', [StoreController ::class ,'store']);
 Route::resource('/store', StoreController::class);
 

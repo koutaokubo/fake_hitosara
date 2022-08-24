@@ -3,14 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\Store;
+use App\Models\Genre;
+use App\Models\Area;
 use Illuminate\Http\Request;
 
 class StoreController extends Controller
 {
     public function index()
     {
-        $stores = Store::all();
-        return view('Store.index',compact('stores'));
+
+        return view('Store.index');
     }
     /**
      * Show the form for creating a new resource.
@@ -20,7 +22,14 @@ class StoreController extends Controller
 
     public function create()
     {
-        return view('Store.create');
+        $stores = Store::all();
+        $genres = Genre::all();
+        $area = Area::all();
+        return view('Store.create',compact('stores','genres', 'area'));
+
+
+
+
     }
     /**
      * Store a newly created resource in storage.
@@ -30,8 +39,13 @@ class StoreController extends Controller
      */
     public function store(Request $request)
     {
-        $stores->fill($request->all())->save();
-        return redirect('/');
+        $store = new Store();
+
+        $store->fill($request->all())->save();
+        // validaion実行
+
+    // [確認]ボタンなら確認フォーム表示へ
+
     }
       /**
      * Display the specified resource.

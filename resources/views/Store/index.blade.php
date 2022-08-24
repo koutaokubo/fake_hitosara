@@ -7,8 +7,8 @@
     <title>Document</title>
 </head>
 <body>
-    @foreach ($reserves as $reserve)
-        <p>{{$reserve->id}}</p>
+    @foreach ($stores as $store)
+        <p>{{$store->id}}</p>
     @endforeach
 </body>
 </html>

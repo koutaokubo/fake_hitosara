@@ -31,7 +31,7 @@
           <button class="btn btn-outline-success" type="submit">Search</button>
           @if (isset($searchStores))
               @foreach ($searchStores as $store)
-                  <a href="#">{{$store->name}}</a>
+                  <a href="{{ route('store.show', ['id' => $store->id, 'area_id' => $store->area_id]) }}">{{$store->name}}</a>
               @endforeach
           @endif
       </div>

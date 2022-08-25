@@ -7,18 +7,13 @@
     <title>予約作成</title>
 </head>
 <body>
-    <form method="post">
+    <form method="post" action="{{ route('reserve.confirm'), ['user_id' => $user->id, 'store_id' => $store->id] }}" name="action" value="confirm">
         @csrf
-        <div>
-             <input id="name" class="block mt-1 w-full" type="text" name="name"/>
-        </div>
-
         <div class="mt-4">
-            <input id="open_time" class="block mt-1 w-full" type="text" name="open_time"/>
+            ご来店予定日 <input id="open_time" class="block mt-1 w-full" type="date" name="date"/>
         </div>
-
         <div class="mt-4">
-            <input id="close_time" class="block mt-1 w-full" type="text" name="close_time"/>
+            ご来店予定時間 <input id="close_time" class="block mt-1 w-full" type="time" name="time"/>
         </div>
         <div>
             <input type="submit" value="送信"/>

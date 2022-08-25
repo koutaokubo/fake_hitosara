@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Reserve;
 use App\Models\User;
 use App\Models\Store;
+use App\Models\Area;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -43,6 +44,12 @@ class ReserveController extends Controller
         // return view('Reserve.favoriteUser', compact('favoriteStores'));
     }
 
+    public function storeDetail(Request $request) {
+        $store = Store::find($request->id);
+        $area = Area::find($request->area_id);
+        return view('Store.storeDetail', compact('store', 'area'));
+    }
+
     public function getReserveList(Request $request) {
         $store = Store::find($request->id);
         $reserveList = $store->getReserveList;
@@ -55,9 +62,18 @@ class ReserveController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('Reserve.create');
+        $user = Auth::user();
+        $store = Store::find($request->store_id);
+        return view('Reserve.createReserve', compact('user', 'store'));
+    }
+
+    public function reserveConfirm(Request $request) {
+        $user = User::find($request->user_id);
+        $store = Store::find($request->store_id);
+        $isAvailable = DB::table('store')
+        return view('Reserve.confirm', compact('user', 'store'));
     }
 
     /**

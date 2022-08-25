@@ -38,4 +38,8 @@ Route::resource('/reserve', ReserveController::class)
 
 Route::get('/home', [HomeFormController::class, 'index']);
 
-Route::get('/store/show/', [ReserveController::class, 'getFavoriteUsers'])->name('store.show');
+// Route::get('/store/show/', [ReserveController::class, 'getFavoriteUsers'])->name('store.show');
+
+Route::get('/store/show/', [ReserveController::class, 'storeDetail'])->name('store.show');
+
+Route::get('/reserve/confirm', [ReserveController::class, 'reserveConfirm'])->name('reserve.confirm');

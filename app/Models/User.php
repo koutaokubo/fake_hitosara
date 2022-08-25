@@ -10,6 +10,7 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Store;
+use App\Models\Reserve;
 class User extends Authenticatable
 {
     use HasApiTokens;
@@ -67,5 +68,9 @@ class User extends Authenticatable
 
     public function favoriteStores() {
         return $this->belongsToMany(Store::class, 'favorite');
+    }
+
+    public function getReserves() {
+        return $this->belongsToMany(Reserve::class);
     }
 }

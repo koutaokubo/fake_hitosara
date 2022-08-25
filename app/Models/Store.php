@@ -12,7 +12,12 @@ class Store extends Model
 
     protected $fillable = [
         'name',
-        'open_time'
+        'address_code',
+        'city',
+        'address',
+        'open_time',
+        'close_time',
+        'reserve_limit'
     ];
 
     public function favoriteUsers() {

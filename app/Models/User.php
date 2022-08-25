@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
-use App\Models\Store;
+
 class User extends Authenticatable
 {
     use HasApiTokens;
@@ -26,8 +26,6 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
-        'gender',
-        'tel',
         'password',
     ];
 
@@ -52,10 +50,6 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    protected $guarded = [
-        'owner'
-    ];
-
     /**
      * The accessors to append to the model's array form.
      *
@@ -64,8 +58,4 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
-
-    public function favoriteStores() {
-        return $this->belongsToMany(Store::class);
-    }
 }

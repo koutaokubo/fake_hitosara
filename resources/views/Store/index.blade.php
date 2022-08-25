@@ -53,5 +53,10 @@
 @else
     <p>登録店舗なし</p>
 @endif
+<form action="store/create" method="GET">
+    <div>
+        <input type="submit" value="作成">
+    </div>
+</form>
 </body>
 </html>

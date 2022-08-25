@@ -1,5 +1,4 @@
-<h1>resources/views/ContactForm/edit.badede.php</h1>
-<h2>お問い合わせ編集</h2>
+<h2>編集</h2>
 
 <form action="/Store/edit/{{$store->id}}" method="POST">
     <div>
@@ -13,6 +12,6 @@
     <div>
         <input type="submit" value="送信">
     </div>
-    
+
     @csrf
 </form>

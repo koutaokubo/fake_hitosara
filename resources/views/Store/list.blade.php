@@ -9,7 +9,7 @@
             <th>編集</th>
             <th>削除</th>
         </tr>
-        {{-- @foreach ディレクティブで、1件ずつ処理 --}}
+
         @foreach ($stores as $store)
             <tr>
 
@@ -23,7 +23,7 @@
                 <td>{{ $store->close_time }}</td>
                 <td>{{ $store->reverse_limit }}</td>
                 <td>
-                    
+
                     <form action="/Store/edit/{{ $store->id }}" method="get">
                         <input type="submit"  name="edit" value="編集">
                         @csrf
@@ -38,5 +38,5 @@
         @endforeach
     </table>
 @else
-    <p>お問い合わせがありません</p>
+    <p>登録店舗なし</p>
 @endif

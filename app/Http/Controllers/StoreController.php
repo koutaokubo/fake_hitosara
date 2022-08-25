@@ -77,10 +77,8 @@ class StoreController extends Controller
     public function update(Request $request, Reserve $reserve)
     {
         $stores = Store::find($id);
-
-        $stores->name = $request->name;
-
-        $stores->save();
+        $stores->fill($request->all())->save();
+       
     }
 
     /**

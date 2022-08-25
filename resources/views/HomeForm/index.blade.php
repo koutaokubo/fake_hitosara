@@ -26,10 +26,10 @@
           {{-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"> --}}
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name=search value="{{ $search }}">
           {{-- <button class="btn btn-outline-success" type="submit">Search</button> --}}
-          @if ($Search_store)
-            @foreach ($Search_store as $item)
-              <p>{{$item->name}}</p>
-            @endforeach
+          @if (isset($search_stores))
+              @foreach ($search_stores as $store)
+                <a href="{{ route('store.show', ['id' => "$store->id"]) }}">{{$store->name}}</a>
+              @endforeach
           @endif
           <button class="btn btn-outline-success" type="submit">Search</button>
       </div>

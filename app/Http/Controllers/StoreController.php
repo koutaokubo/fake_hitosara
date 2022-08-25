@@ -11,8 +11,8 @@ class StoreController extends Controller
 {
     public function index()
     {
-
-        return view('Store.index');
+        $stores = Store::all();
+        return view('Store.list', compact('stores'));
     }
     /**
      * Show the form for creating a new resource.
@@ -25,11 +25,8 @@ class StoreController extends Controller
         $stores = Store::all();
         $genres = Genre::all();
         $area = Area::all();
+
         return view('Store.create',compact('stores','genres', 'area'));
-
-
-
-
     }
     /**
      * Store a newly created resource in storage.
@@ -39,35 +36,35 @@ class StoreController extends Controller
      */
     public function store(Request $request)
     {
-        $store = new Store();
+        $stores = new Store();
 
-        $store->fill($request->all())->save();
-        // validaion実行
+        $stores->fill($request->all())->save();
 
-    // [確認]ボタンなら確認フォーム表示へ
 
     }
       /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Reserve  $reserve
+     * @param  \App\Models\Store  $reserve
      * @return \Illuminate\Http\Response
      */
 
-    public function show(Reserve $reserve)
+    public function show(Store $store)
     {
-        //
+
     }
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Reserve  $reserve
+     * @param  \App\Models\Store  $store
      * @return \Illuminate\Http\Response
      */
 
-    public function edit(Reserve $reserve)
+    public function edit($id)
     {
-        //
+        $stores = Store::find($id);
+
+        return view('Store.edit', compact('stores'));
     }
 
     /**
@@ -79,17 +76,25 @@ class StoreController extends Controller
      */
     public function update(Request $request, Reserve $reserve)
     {
-        //
+        $stores = Store::find($id);
+
+        $stores->name = $request->name;
+
+        $stores->save();
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Reserve  $reserve
+     * @param  \App\Models\Store  $reserve
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Reserve $reserve)
+    public function destroy($id)
     {
-        //
+        $stores_to_delete = Store::find($id);
+
+        $stores_to_delete->delete();
+
+        return redirect('/Store/list');
     }
 }

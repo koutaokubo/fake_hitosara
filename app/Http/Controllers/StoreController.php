@@ -9,10 +9,12 @@ use Illuminate\Http\Request;
 
 class StoreController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $stores = Store::all();
-        return view('Store.index', compact('stores'));
+        $genre = Genre::find($request->genre_id);
+        $area = Area::find($request->area_id);
+        return view('Store.index', compact('stores','genre', 'area','request'));
     }
     /**
      * Show the form for creating a new resource.
@@ -37,10 +39,11 @@ class StoreController extends Controller
     public function confirm(Request $request)
     {
         $stores = Store::all();
-        $genres = Genre::all();
-        $area = Area::all();
+        $genre = Genre::find($request->genre_id);
+        $area = Area::find($request->area_id);
 
-        return view('Store.confirm',compact('stores','genres', 'area','request'));
+
+        return view('Store.confirm',compact('stores','genre', 'area','request'));
     }
     public function store(Request $request)
     {
@@ -75,11 +78,12 @@ class StoreController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function edit($id)
+    public function edit(Store $store,Request $request)
     {
-        $stores = Store::find($id);
-
-        return view('Store.edit', compact('stores'));
+        $genres = Genre::find($request->genre_id);
+        $area = Area::find($request->area_id);
+        $edit=  Store::find($store->id);
+        return view('Store.edit', compact('edit','genres', 'area','store'));
     }
 
     /**
@@ -89,11 +93,12 @@ class StoreController extends Controller
      * @param  \App\Models\Reserve  $reserve
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Reserve $reserve)
+    public function update(Store $store,Request $request)
     {
-        $stores = Store::find($id);
-        $stores->fill($request->all())->save();
 
+        $store =  Store::find($store->id);
+        $store->fill($request->all())->save();
+        return redirect('/store');
     }
 
     /**
@@ -102,11 +107,9 @@ class StoreController extends Controller
      * @param  \App\Models\Store  $reserve
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Store $store)
     {
-        $stores_to_delete = Store::find($id);
-
-        $stores_to_delete->delete();
+        Store::find($store->id)->delete();
 
         return redirect('/store');
     }

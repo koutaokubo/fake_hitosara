@@ -2,18 +2,18 @@
 <p>登録内容確認</p>
 <ul>
 <li>
-名前：<p>{{$request->name}}</p>
-郵便番号<p>{{$request->address_code}}</p>
-ジャンル<p>{{$request->genre_id}}</p>
-エリア<p>{{$request->area_id}}</p>
-都道府県<p>{{$request->city}}</p>
-住所<p>{{$request->address}}</p>
-営業開始時間<p>{{$request->open_time}}</p>
-営業終了時間<p>{{$request->close_time}}</p>
-予約締切時間<p>{{$request->reverse_limit}}</p>
+<p>名前：{{$request->name}}</p>
+<p>郵便番号:{{$request->address_code}}</p>
+<p>ジャンル:{{$genre->food_genre}}</p>
+<p>エリア:{{$area->area_name}}</p>
+<p>都道府県:{{$request->city}}</p>
+<p>住所:{{$request->address}}</p>
+<p>営業開始時間:{{$request->open_time}}</p>
+<p>営業終了時間:{{$request->close_time}}</p>
+<p>予約締切時間:{{$request->reserve_limit}}</p>
 </li>
 </ul>
-<form action="" method="POST">
+<form action="/store" method="POST">
 
     <input type="hidden" name="name" value="{{$request->name}}">
     <input type="hidden" name="address_code" value="{{$request->address_code}}">
@@ -23,7 +23,7 @@
     <input type="hidden" name="address" value="{{$request->address}}">
     <input type="hidden" name="open_time" value="{{$request->open_time}}">
     <input type="hidden" name="close_time" value="{{$request->close_time}}">
-    <input type="hidden" name="reverse_limit" value="{{$request->reverse_limit}}">
+    <input type="hidden" name="reserve_limit" value="{{$request->reserve_limit}}">
 
     <div>
 

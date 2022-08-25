@@ -25,4 +25,10 @@ class Store extends Model
     public function favoriteUsers() {
         return $this->belongsToMany(User::class);
     }
+    public function area(){
+        return $this->belongsTo(Area::class);
+    }
+    public function genre(){
+        return $this->belongsTo(Genre::class);
+    }
 }

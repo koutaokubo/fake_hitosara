@@ -31,6 +31,7 @@ Route::middleware([
 
 Route::post('/store/confirm', [StoreController ::class ,'confirm']);
 Route::resource('/store', StoreController::class);
+// Route::resource('/store', StoreController::class);
 
 
 Route::resource('/reserve', ReserveController::class)

@@ -15,6 +15,8 @@
 
                 <td>{{ $store->name }}</td>
                 <td>{{ $store->address_code }}</td>
+                <td>{{ $store->area_id }}</td>
+                <td>{{ $store->genre_id }}</td>
                 <td>{{ $store->city }}</td>
                 <td>{{ $store->address }}</td>
                 <td>{{ $store->open_time }}</td>

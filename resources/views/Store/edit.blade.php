@@ -6,9 +6,7 @@
         <label for="name">名前</label>
         <input type="text" name="name" id="name" value="{{old('name', $edit->name)}}">
 
-        {{-- @if ($errors->has('name'))
-            <p class="error">*{{ $errors->first('name') }}</p>
-        @endif --}}
+
     </div>
     <div>
         <label for="name">名前</label>
@@ -28,15 +26,17 @@
           @endforeach
         </select>
       </div>
-    {{-- <div class="form-group">
+      <div class="form-group">
         <label for="exampleFormControlSelect1">エリア</label>
         <select class="form-control" id="exampleFormControlSelect1" name="area_id">
-          <option value="">-</option>
-          @foreach ($area as $city)
-          <option>{{ $city->area_name }}</option>
+            <option >-</option>
+            @foreach ($area as $city)
+
+
+          <option value="{{$city->id}}">{{ $city->area_name }}</option>
           @endforeach
         </select>
-    </div> --}}
+      </div>
     <div>
         <label for="city">都道府県</label>
         <input type="text" name="city" id="city" value="{{old('city', $edit->city)}}">

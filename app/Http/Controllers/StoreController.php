@@ -80,8 +80,10 @@ class StoreController extends Controller
 
     public function edit(Store $store,Request $request)
     {
-        $genres = Genre::find($request->genre_id);
-        $area = Area::find($request->area_id);
+        $genres = Genre::all();
+        $area = Area::all();
+        // $genres = Genre::find($request->genre_id);
+        // $area = Area::find($request->area_id);
         $edit=  Store::find($store->id);
         return view('Store.edit', compact('edit','genres', 'area','store'));
     }

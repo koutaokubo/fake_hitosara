@@ -29,7 +29,7 @@ Route::middleware([
     })->name('dashboard');
 });
 
-Route::post('/store/confirm', [StoreController ::class ,'store']);
+Route::post('/store/confirm', [StoreController ::class ,'confirm']);
 Route::resource('/store', StoreController::class);
 
 

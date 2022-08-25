@@ -34,20 +34,28 @@ class StoreController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    public function confirm(Request $request)
+    {
+        $stores = Store::all();
+        $genres = Genre::all();
+        $area = Area::all();
+
+        return view('Store.confirm',compact('stores','genres', 'area','request'));
+    }
     public function store(Request $request)
     {
-        if ($request->has('back')){
-            
-            return redirect('/store/create')->withInput();
-        }
+         if ($request->has('back')){
 
-        if ($request->has('send')) {
+             return redirect('/store/create')->withInput();
+         }
+
+         if ($request->has('send')) {
         $stores = new Store();
 
         $stores->fill($request->all())->save();
 
         return redirect('/store');
-    }
+     }
     }
       /**
      * Display the specified resource.

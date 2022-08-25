@@ -7,9 +7,9 @@
     <title>Document</title>
 </head>
 <body>
-    @foreach ($stores as $store)
+    {{-- @foreach ($stores as $store)
         <p>{{$store->id}}</p>
-    @endforeach
+    @endforeach --}}
 
 <h2>登録店舗一覧</h2>
 

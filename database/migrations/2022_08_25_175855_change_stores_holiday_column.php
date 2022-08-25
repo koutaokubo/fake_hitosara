@@ -14,9 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('stores', function (Blueprint $table) {
-            $table->json('holiday')->comment('定休日');
-            $table->time('open_time')->change();
-            $table->time('close_time')->change();
+            $table->string('holiday')->comment('定休日')->change();
         });
     }
 
@@ -27,10 +25,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('stores', function (Blueprint $table) {
-            $table->dropColumn('holiday');
-            $table->dateTime('open_time')->change();
-            $table->dateTime('close_time')->change();
-        });
+        $table->json('holiday')->comment('定休日')->change();
     }
 };

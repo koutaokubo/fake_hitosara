@@ -72,8 +72,10 @@ class ReserveController extends Controller
     public function reserveConfirm(Request $request) {
         $user = User::find($request->user_id);
         $store = Store::find($request->store_id);
-        $isAvailable = DB::table('store')
-        return view('Reserve.confirm', compact('user', 'store'));
+        $reserve_limit = DB::table('stores')->select('reserve_limit')->where('id', $request->store_id)->get();
+        // $current_reserve_limit = DB::table('store')->select('current_reserve_limit')->get();
+        // $isAvailable = 
+        return view('Reserve.confirm', compact('user', 'store', 'reserve_limit'));
     }
 
     /**

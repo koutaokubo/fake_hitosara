@@ -12,7 +12,7 @@ class StoreController extends Controller
     public function index()
     {
         $stores = Store::all();
-        return view('Store.list', compact('stores'));
+        return view('Store.index', compact('stores'));
     }
     /**
      * Show the form for creating a new resource.
@@ -78,7 +78,7 @@ class StoreController extends Controller
     {
         $stores = Store::find($id);
         $stores->fill($request->all())->save();
-       
+
     }
 
     /**
@@ -93,6 +93,6 @@ class StoreController extends Controller
 
         $stores_to_delete->delete();
 
-        return redirect('/Store/list');
+        return redirect('/Store/index');
     }
 }

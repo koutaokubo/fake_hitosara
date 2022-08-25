@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Reserve;
 use App\Models\User;
+use App\Models\Store;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 // use App\Http\Requests\StoreRequest;
 
 class ReserveController extends Controller
@@ -18,10 +20,27 @@ class ReserveController extends Controller
     public function index()
     {
         //各モデルごとのデータ取得ができたか確認用
-        $favoriteStore = User::favoriteStores();
         $reserves = Reserve::all();
+        $stores = Store::all();
         $user = Auth::user();
-        return view('Reserve.index',compact('reserves', 'user', 'favoriteStore'));
+        return view('Reserve.index',compact('reserves', 'user', 'stores'));
+    }
+
+    public function getFavoriteUsers(Request $request) {
+        $store = Store::find($request->id);
+        $favoriteUsers = $store->favoriteUsers;
+        
+        return view('Reserve.favoriteUser', compact('favoriteUsers',));
+    }
+
+    public function isFavoritedby() {
+        $isFavorited = $store->isFavoritedBy(Auth::user());
+    }
+
+    public function getFavoriteStores() {
+        // $user = Auth::user();
+        // $favoriteStores = $user->favoriteStores;
+        // return view('Reserve.favoriteUser', compact('favoriteStores'));
     }
 
     /**

@@ -16,6 +16,13 @@ class Store extends Model
     ];
 
     public function favoriteUsers() {
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class, 'favorite');
+    }
+
+    public function isFavoritedBy(User $user): bool
+    {
+        return $user
+            ? (bool)$this->favoriteUsers->where('user_id')->count()
+            : false;
     }
 }

@@ -7,12 +7,8 @@
     <title>Document</title>
 </head>
 <body>
-    @foreach ($reserves as $reserve)
-        <p>{{$reserve->id}}</p>
-        <p>{{$user->name}}</p>
-    @endforeach
-    @foreach ($stores as $store)
-        <a href="{{ route('store.show', ['id' => "$store->id"]) }}">{{$store->name}}</a>
+    @foreach ($favoriteUsers as $user)
+        {{$user->name}}
     @endforeach
 </body>
 </html>

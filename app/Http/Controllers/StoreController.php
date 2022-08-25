@@ -36,11 +36,18 @@ class StoreController extends Controller
      */
     public function store(Request $request)
     {
+        if ($request->has('back')){
+            
+            return redirect('/store/create')->withInput();
+        }
+
+        if ($request->has('send')) {
         $stores = new Store();
 
         $stores->fill($request->all())->save();
 
-
+        return redirect('/store');
+    }
     }
       /**
      * Display the specified resource.
@@ -93,6 +100,6 @@ class StoreController extends Controller
 
         $stores_to_delete->delete();
 
-        return redirect('/Store/index');
+        return redirect('/store');
     }
 }

@@ -16,6 +16,10 @@
         <div class="mt-4">
             <input id="open_time" class="block mt-1 w-full" type="text" name="open_time"/>
         </div>
+
+        <div class="mt-4">
+            <input id="close_time" class="block mt-1 w-full" type="text" name="close_time"/>
+        </div>
         <div>
             <input type="submit" value="送信"/>
         </div>

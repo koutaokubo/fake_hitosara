@@ -43,6 +43,13 @@ class ReserveController extends Controller
         // return view('Reserve.favoriteUser', compact('favoriteStores'));
     }
 
+    public function getReserveList(Request $request) {
+        $store = Store::find($request->id);
+        $reserveList = $store->getReserveList;
+
+        return view('Reserve.reserveList', compact('reserveList'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *

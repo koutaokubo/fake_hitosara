@@ -20,20 +20,17 @@
         <div>
             <li>
                 <p>お店：{{$store->name}}</p>
-                <p>予約日時：{{$request->date}}{{$request->time}}</p>
+                <p>予約日時：{{$request->date}} {{$request->time}}</p>
             </li>
         </div>
         <hr>
     </ul>
     <form action="{{route('reserve.store') }}" method="POST">
-
-        <input type="hidden" name="name" value="{{$request->name}}">
-        <input type="hidden" name="reserve_date" value="{{$request->date.:$request->time}}">
-        <input type="hidden" name="store_id" value="{{$request->store_id}}">
-        <input type="hidden" name="user_id" value="{{$request->user_id}}">
+        <input type="hidden" name="reserve_date" value="{{$request->date}} {{$request->time}}">
+        <input type="hidden" name="store_id" value="{{$store->id}}">
+        <input type="hidden" name="user_id" value="{{$user->id}}">
         <input type="hidden" name="menu_id" value="{{$request->menu_id}}">
         <div>
-
             <button class="btn btn-primary" type="submit" name="back">
                 <i class="fa-solid fa-caret-left"></i>
                 戻る

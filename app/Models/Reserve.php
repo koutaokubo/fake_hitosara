@@ -14,6 +14,9 @@ class Reserve extends Model
 
     protected $fillable = [
         'reserve_date',
+        'store_id',
+        'user_id',
+        'menu_id',
     ];
 
     public function getReserveUser() {

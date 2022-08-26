@@ -11,7 +11,7 @@
     <ul>
         <div>
             <li>
-                <p>お名前：{{$request->name}}</p>
+                <p>お名前：{{$user->name}}</p>
                 <p>メールアドレス：{{$user->email}}</p>
                 <p>電話番号:{{$user->tel}}</p>
                 <hr>

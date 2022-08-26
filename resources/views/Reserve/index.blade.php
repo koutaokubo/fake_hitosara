@@ -7,15 +7,12 @@
     <title>Document</title>
 </head>
 <body>
-
+    @foreach ($reserves as $reserve)
+        <p>{{$reserve->id}}</p>
+        <p>{{$user->name}}</p>
+    @endforeach
     @foreach ($stores as $store)
-        <p>{{$store->id}}</p>
-        @foreach ($reserves as $reserve)
-            <p>{{$reserve->id}}</p>
-            <p>{{$user->name}}</p>
-            <p>{{$favoriteStore}}</p>
-        @endforeach
-
+        <a href="{{ route('store.show', ['store_id' => $store->id, 'area_id' => $store->area_id]) }}">{{$store->name}}</a>
     @endforeach
 </body>
 </html>

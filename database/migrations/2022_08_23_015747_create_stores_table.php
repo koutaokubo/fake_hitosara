@@ -12,20 +12,21 @@ return new class extends Migration
      * @return void
      */
     public function up()
-    {
-        Schema::create('stores', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('address_code')->comment('郵便番号');
-            $table->foreignId('area_id');
-            $table->string('city')->comment('市区町村');
-            $table->string('address')->comment('それ以降');
-            $table->Time('open_time');
-            $table->Time('close_time');
-            $table->Time('reserve_limit');
-            $table->foreignId('genre_id');
-            $table->timestamps();
-        });
+        if (!Schema::hasTable('stores')) {
+            Schema::create('stores', function (Blueprint $table) {
+                $table->id();
+                $table->string('name');
+                $table->string('address_code')->comment('郵便番号');
+                $table->foreignId('area_id');
+                $table->string('city')->comment('市区町村');
+                $table->string('address')->comment('それ以降');
+                $table->dateTime('open_time');
+                $table->dateTime('close_time');
+                $table->integer('reserve_limit');
+                $table->foreignId('genre_id');
+                $table->timestamps();
+            });
+        }
     }
 
     /**

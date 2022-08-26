@@ -23,26 +23,15 @@
         </select>
       </div>
       <div>
-        {{-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"> --}}
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name=search value="{{ $search }}">
-        {{-- <button class="btn btn-outline-success" type="submit">Search</button> --}}
-        <button class="btn btn-outline-success" type="submit">Search</button>
-        @if ($Search_store)
-        @foreach ($Search_store as $item)
-        <table>
-          <tr>
-            <caption align="top">検索結果</caption>
-            <td>{{$item->name}}</td>
-            <td>
-                <input class="btn btn-outline-success" type="button" value="詳細" name="detail">
-            </td>
-            <td>
-              <input class="btn btn-outline-success" type="button" value="予約" name="reserve">
-            </td>
-          </tr>
-        </table>
-        @endforeach
-        @endif
+          {{-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"> --}}
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name=search value="{{ $search }}">
+          {{-- <button class="btn btn-outline-success" type="submit">Search</button> --}}
+          @if ($Search_store)
+            @foreach ($Search_store as $item)
+              <p>{{$item->name}}</p>
+            @endforeach
+          @endif
+          <button class="btn btn-outline-success" type="submit">Search</button>
       </div>
     @csrf
     </div>

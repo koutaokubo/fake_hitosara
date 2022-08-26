@@ -13,14 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('reserves', function (Blueprint $table) {
-            $table->id();
-            $table->date('reserve_date');
-            $table->foreignId('store_id');
-            $table->foreignId('user_id');
-            $table->foreignId('menu_id');
-            $table->timestamps();
-        });
+        if (!Schema::hasTable('reserves')) {
+            Schema::create('reserves', function (Blueprint $table) {
+                $table->id();
+                $table->date('reserve_date');
+                $table->foreignId('store_id');
+                $table->foreignId('user_id');
+                $table->foreignId('menu_id');
+                $table->timestamps();
+            });
+        }
     }
 
     /**

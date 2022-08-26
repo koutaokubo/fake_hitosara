@@ -44,5 +44,8 @@ Route::resource('/reserve', ReserveController::class)
 
 Route::get('/home', [HomeFormController::class, 'index']);
 
-Route::post('/like/{id}', [HomeFormController::class, 'index']);
+// Route::get('/store/show/', [ReserveController::class, 'getFavoriteUsers'])->name('store.show');
 
+Route::get('/store/show/', [ReserveController::class, 'storeDetail'])->name('store.show');
+
+Route::post('/reserve/confirm', [ReserveController::class, 'reserveConfirm'])->name('reserve.confirm');

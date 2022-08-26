@@ -1,6 +1,8 @@
 @extends('.layout')
 
 @section('content')
+<div class = "container">
+@can('system-only')
 
     @if ($contacts->count() > 0)
     <table>
@@ -18,6 +20,11 @@
     @else
     <p>お問い合わせがありません</p>
     @endif
-
+@elsecan('user-higher')
+    <div mb-3>
+            <h3>ページの期限が切れています。</h3>
+    </div>
+@endcan
+</div>
 @endsection
 

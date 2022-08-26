@@ -16,6 +16,32 @@ use App\Http\Controllers\ContactFormController;
 |
 */
 
+Route::get('/home', [HomeFormController::class, 'index']);
+
+//すべてのユーザーに権限
+Route::group(['middleware' => ['auth', 'can:user-higher']], function () {
+    // ユーザ一覧
+    Route::get('/account', 'AccountController@index')->name('account.index');
+});
+
+// システム管理者のみ
+Route::group(['middleware' => ['auth', 'can:system-only']], function () {
+
+});
+
+// 店舗管理者以上
+Route::group(['middleware' => ['auth', 'can:admin-higher']], function () {
+    
+});
+
+
+
+Route::resource('contacts', ContactFormController::class)
+    ->except(['destroy']);
+
+
+
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -30,7 +56,6 @@ Route::middleware([
     })->name('dashboard');
 });
 
-Route::get('/home', [HomeFormController::class, 'index']);
 
 Route::post('/store/confirm', [StoreController ::class ,'store']);
 
@@ -43,7 +68,5 @@ Route::resource('/reserve', ReserveController::class)
             ])
     ->middleware('auth');
     
-Route::resource('contacts', ContactFormController::class)
-    ->except(['destroy']);
 
 

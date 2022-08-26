@@ -86,5 +86,11 @@ class DatabaseSeeder extends Seeder
 
         ];
         DB::table('genres')->insert($lists);
+
+        $contacts = [
+            ['name' => 'お問い合わせ'],
+            ['name' => '店舗登録申請']
+        ];
+        DB::table('categories')->insert($contacts);
     }
 }

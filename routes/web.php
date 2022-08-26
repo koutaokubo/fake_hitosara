@@ -44,8 +44,6 @@ Route::resource('/reserve', ReserveController::class)
     ->middleware('auth');
     
 Route::resource('contacts', ContactFormController::class)
-    ->except(['index', 'destroy', 'show']);
-
-Route::get('/send', function(){return view('Contactform.send');});
+    ->except(['destroy']);
 
 

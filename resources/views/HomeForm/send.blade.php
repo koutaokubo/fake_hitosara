@@ -3,20 +3,17 @@
 @section('content')
 
 <div class = "container">
-    @if(isset($article))
+    @if(isset($contacts))
     <div mb-3>
         <h3>ご意見・質問ありがとうございました。</h3>
         <a>以下の内容で送信されました。</a>
     </div>
     <div m-3>
         <table>
-        @foreach ($article as $contact)
+        @foreach ($contacts as $contact)
         <tr><td>お問い合わせの種類</td>
-            <td>@foreach ($category as $title)
-                @if($contact->category_id == $title->id )
-                    {{$title->name}}
-                @endif
-            @endforeach
+            <td>
+                {{$contact->category->name}}
         </td></tr>
         <tr><td>ご意見・お問い合わせ内容</td>
             <td>{{ $contact->text }}</td></tr>

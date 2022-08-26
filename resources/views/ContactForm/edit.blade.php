@@ -26,11 +26,7 @@
       </tr>
       <tr>
         <th scope="row">お問い合わせジャンル</th>
-        @foreach ($category as $title)
-        @if($article->category_id == $title->id)
-        <td colspan="2">{{ $title->name }}</td>
-        @endif
-        @endforeach
+        <td colspan="2">{{ $article->category->name }}</td>
     </tr>
     <tr>
         <th scope="row">お問い合わせ・質問内容</th>
@@ -38,19 +34,17 @@
     </tr>
 </tbody>
 </table>
-@foreach ($category as $title)
-    @if($article->category_id == $title->id && $article->category_id == 2 && $user->role == 0)
+    @if($article->category_id == 2 && $send_user->role == 0)
     <form method="post" action="/contacts/{{$article->id}}">
       <input type="hidden" name="_method" value="PUT">
-      <input type="hidden" name="shop" value="{{$user->role}}">
+      <input type="hidden" name="shop" value="{{ Auth::user()->role}}">
       <input type="hidden" name = "send_user_id" value = {{$article->user_id}}>
       <input type="submit" class="btn btn-primary" value="店舗承認">
       @csrf
     </form>
-    @elseif($article->category_id == $title->id && $article->category_id == 2 && $user->role != 0)
+    @elseif($article->category_id == 2 && $send_user->role != 0)
     <button type="button" class="btn btn-primary" disabled data-bs-toggle="button" autocomplete="off">店舗承認済み</button>
     @endif
-@endforeach
 </div>
 @endforeach
 @else

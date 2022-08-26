@@ -55,17 +55,18 @@
           </li>
         </ul>
         <ul class="navbar-nav ">
-        @if (isset($user))
+        
+        @if (Auth::check())
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <i class="fa fa-envelope-o">
               </i>
-              {{$user->name}}さん
+              {{ Auth::user()->name }}さん
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="#">プロフィール</a>
                 <a class="dropdown-item" href="{{route('favorite')}}">お気に入り店舗</a>
-                @if ($user != null && $user->owner ==True)
+                @if (Auth::check() && Auth::user()->role !=0)
                 <a class="dropdown-item" href="#">
                     店舗情報登録</a>
                 @endif
@@ -73,7 +74,7 @@
               <a class="dropdown-item" href="#">ログアウト</a>
             </div>
           </li>
-        @elseif (isset($user) == null)
+        @else
             <li class="nav-item">
             <a class="nav-link" href="#">
                 ログイン

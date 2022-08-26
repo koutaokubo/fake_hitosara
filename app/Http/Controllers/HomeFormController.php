@@ -40,10 +40,39 @@ class HomeFormController extends Controller
         //     // $searchStoreName = DB::select('select name from stores where name like ?', [$search]);
         // }
 
-        if(!empty($search_area) || !empty($search_genres) || Str::length($search)>0){
-            $Search_store = Store::where('genre_id',"$search_genres")->orWhere('area_id',"$search_area")->orWhere('name','like',"%$search%")
-            ->get();
+        if($search_area != null){
+            /* エリアの内容を検索する */
+            $Search_store = Store::Where('area_id',"$search_area");
+            dump($Search_store);
+        } else {
+            /* エリアの検索が設定されていない場合 */
         }
+        $Search_store = Store::Where('area_id',"$search_area");
+
+        if ($search_genres != null) {/* ジャンルの検索が設定されていたら */
+            $Search_store->where('genre_id',"$search_genres");
+        }
+        if (Str::length($search) > 0) {/* キーワードが設定されていたら */
+            $Search_store->where('name','like',"%$search%");
+        }
+        dump($Search_store);
+
+        //     && $search_genres != null){
+        //     $Search_store = Store::where('genre_id',"$search_genres")->Where('area_id',"$search_area")->Where('name','like',"%$search%")
+        //     ->get();
+        // }
+        // if($search_area == null && $search_genres != null){
+        //     $Search_store = Store::where('genre_id',"$search_genres")->Where('name','like',"%$search%")
+        //     ->get();
+        // }
+        // if($search_area != null && $search_genres == null){
+        //     $Search_store = Store::where('area_id',"$search_area")->Where('name','like',"%$search%")
+        //     ->get();
+        // }
+        // if($search_area == null && $search_genres == null){
+        //     $Search_store = Store::where('name','like',"%$search%")
+        //     ->get();
+        // }
 
         // $Search_store = $Search_answer->get();
 

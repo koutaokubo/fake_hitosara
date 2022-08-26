@@ -7,7 +7,7 @@
     <div class="form-group">
         <label for="exampleFormControlSelect1">ジャンル</label>
         <select class="form-control" id="exampleFormControlSelect1" name="genres" value ="{{ $genres }}">
-          <option>-</option>
+          <option value="">-</option>
           @foreach ($genres as $foods)
           <option value = {{$foods->id}}>{{ $foods->food_genre }}</option>
           @endforeach
@@ -16,7 +16,7 @@
       <div class="form-group">
         <label for="exampleFormControlSelect1">エリア</label>
         <select class="form-control" id="exampleFormControlSelect1" name="area" value ="{{ $area }}">
-          <option>-</option>
+          <option value="">-</option>
           @foreach ($area as $city)
           <option value = {{$city->id}}>{{ $city->area_name }}</option>
           @endforeach

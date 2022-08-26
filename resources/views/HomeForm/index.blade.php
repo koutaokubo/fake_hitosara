@@ -6,7 +6,7 @@
 <form class="container-fluid me-2" action="/home" method="get">
     <div class="form-group">
         <label for="exampleFormControlSelect1">ジャンル</label>
-        <select class="form-control" id="exampleFormControlSelect1" name="genre">
+        <select class="form-control" id="exampleFormControlSelect1" name="genres" value ="{{ $genres }}">
           <option>-</option>
           @foreach ($genres as $foods)
           <option value = {{$foods->id}}>{{ $foods->food_genre }}</option>
@@ -15,7 +15,7 @@
       </div>
       <div class="form-group">
         <label for="exampleFormControlSelect1">エリア</label>
-        <select class="form-control" id="exampleFormControlSelect1" name="area">
+        <select class="form-control" id="exampleFormControlSelect1" name="area" value ="{{ $area }}">
           <option>-</option>
           @foreach ($area as $city)
           <option value = {{$city->id}}>{{ $city->area_name }}</option>
@@ -38,7 +38,7 @@
         <p>検索結果</p>
         <table>
           <tr>
-            <td>{{$item->name}}</td>
+            <td>{{$item->genre_id}}</td>
             <td>
                 <input class="btn btn-outline-success" type="button" value="詳細" name="detail">
             </td>

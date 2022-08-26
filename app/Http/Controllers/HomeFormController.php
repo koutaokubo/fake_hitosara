@@ -20,16 +20,33 @@ class HomeFormController extends Controller
         $user = Auth::user();
         //検索キーワードを取得
         $search = $request->input('search');
+        $search_area = $request->input('area');
+        $search_genres = $request->input('genres');
+        $Search_store = 0;
 
-        //該当するデータを取得
-        if(Str::length($search)>0){
-            $Search_store = Store::where('name','like',"%$search%")
+        // //エリア検索
+        // if($search_area>0){
+        //     $Search_answer = Store::where('area_id','like',"%$search_area%");
+        // }
+
+        // //ジャンル検索
+        // if($search_genres>0){
+        //     $Search_answer = Store::where('genre_id','like',"%$search_genres%");
+        // }
+
+        // //該当するデータを取得
+        // if(Str::length($search)>0){
+        //     $Search_answer = Store::where('name','like',"%$search%");
+        //     // $searchStoreName = DB::select('select name from stores where name like ?', [$search]);
+        // }
+
+        if(!empty($search_area) || !empty($search_genres) || Str::length($search)>0){
+            $Search_store = Store::where('genre_id',"$search_genres")->orWhere('area_id',"$search_area")->orWhere('name','like',"%$search%")
             ->get();
-            // $searchStoreName = DB::select('select name from stores where name like ?', [$search]);
-        }else{
-            $Search_store = Store::all();
-            // $searchStoreName = Store::all();
         }
+
+        // $Search_store = $Search_answer->get();
+
         return view('HomeForm.index',compact('genres', 'area', 'user', 'search', 'Search_store'));
 
         // return view('Search_store',compact('search','Search_store'));

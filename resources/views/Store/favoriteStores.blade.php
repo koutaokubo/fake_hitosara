@@ -7,8 +7,8 @@
     <title>Document</title>
 </head>
 <body>
-    @foreach ($favoriteUsers as $user)
-        {{$user->name}}
+    @foreach ($favoriteStores as $store)
+        {{$store->name}}
     @endforeach
 </body>
 </html>

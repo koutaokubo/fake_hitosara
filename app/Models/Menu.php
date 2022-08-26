@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Store;
 
 class Menu extends Model
 {
@@ -14,4 +15,8 @@ class Menu extends Model
         'charge',
         'course_time'
     ];
+
+    public function getStore() {
+        return $this->belongsTo(Store::class);
+    }
 }

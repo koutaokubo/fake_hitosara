@@ -71,6 +71,12 @@ class StoreController extends Controller
     {
 
     }
+
+    public function storeDetail(Request $request) {
+        $store = Store::find($request->store_id);
+        $area = Area::find($request->area_id);
+        return view('Store.storeDetail', compact('store', 'area'));
+    }
     /**
      * Show the form for editing the specified resource.
      *

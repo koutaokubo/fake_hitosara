@@ -40,7 +40,7 @@ class Store extends Model
     }
 
     public function getMenuList() {
-        return $this->belongsToMany(Menu::class, 'menus');
+        return $this->hasMany(Menu::class);
     }
     public function area(){
         return $this->belongsTo(Area::class);

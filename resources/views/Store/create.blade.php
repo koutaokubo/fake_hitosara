@@ -49,7 +49,7 @@
    営業終了時間 <input id="close_time" class="block mt-1 w-full" type="time" name="close_time"/>
 </div>
 <div>
-   予約締切時間 <input id="reserve_limit" class="block mt-1 w-full" type="time" name="reserve_limit"/>
+   最大予約席数 <input id="reserve_limit" class="block mt-1 w-full" type="text" name="reserve_limit"/>
 </div>
         <div>
             <input type="submit" value="送信"/>

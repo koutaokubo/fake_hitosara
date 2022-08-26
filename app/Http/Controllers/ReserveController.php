@@ -44,12 +44,6 @@ class ReserveController extends Controller
         // return view('Reserve.favoriteUser', compact('favoriteStores'));
     }
 
-    public function storeDetail(Request $request) {
-        $store = Store::find($request->store_id);
-        $area = Area::find($request->area_id);
-        return view('Store.storeDetail', compact('store', 'area'));
-    }
-
     public function getReserveList(Request $request) {
         $store = Store::find($request->id);
         $reserveList = $store->getReserveList;
@@ -87,6 +81,7 @@ class ReserveController extends Controller
      */
     public function store(Request $request)
     {
+        $reserve = new Reserve;
         $reserve->fill($request->all())->save();
         return redirect('/');
     }

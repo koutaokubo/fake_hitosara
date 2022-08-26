@@ -12,7 +12,7 @@
         <p>{{$user->name}}</p>
     @endforeach
     @foreach ($stores as $store)
-        <a href="{{ route('store.show', ['store_id' => $store->id, 'area_id' => $store->area_id]) }}">{{$store->name}}</a>
+        <a href="{{ route('store.detail', ['store_id' => $store->id, 'area_id' => $store->area_id]) }}">{{$store->name}}</a>
     @endforeach
 </body>
 </html>

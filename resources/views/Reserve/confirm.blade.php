@@ -28,8 +28,8 @@
     <form action="{{route('reserve.store') }}" method="POST">
 
         <input type="hidden" name="name" value="{{$request->name}}">
-        <input type="hidden" name="reserve_date" value="{{$request->date.$request->time}}">
-        <input type="hidden" name="store_id" value="{{r$request->store_id}}">
+        <input type="hidden" name="reserve_date" value="{{$request->date.:$request->time}}">
+        <input type="hidden" name="store_id" value="{{$request->store_id}}">
         <input type="hidden" name="user_id" value="{{$request->user_id}}">
         <input type="hidden" name="menu_id" value="{{$request->menu_id}}">
         <div>

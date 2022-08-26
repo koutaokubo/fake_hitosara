@@ -30,9 +30,11 @@ Route::middleware([
 });
 
 Route::post('/store/confirm', [StoreController ::class ,'confirm']);
+
+Route::get('/store/detail/', [StoreController::class, 'storeDetail'])->name('store.detail');
+
 Route::resource('/store', StoreController::class);
 // Route::resource('/store', StoreController::class);
-
 
 Route::resource('/reserve', ReserveController::class)
     ->names(['index' => 'reserve.index',
@@ -45,7 +47,5 @@ Route::resource('/reserve', ReserveController::class)
 Route::get('/home', [HomeFormController::class, 'index']);
 
 // Route::get('/store/show/', [ReserveController::class, 'getFavoriteUsers'])->name('store.show');
-
-Route::get('/store/show/', [ReserveController::class, 'storeDetail'])->name('store.show');
 
 Route::post('/reserve/confirm', [ReserveController::class, 'reserveConfirm'])->name('reserve.confirm');

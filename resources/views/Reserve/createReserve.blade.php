@@ -10,10 +10,19 @@
     <form method="post" action="{{ route('reserve.confirm') }}" name="action" value="confirm">
         @csrf
         <div class="mt-4">
-            ご来店予定日 <input id="open_time" class="block mt-1 w-full" type="date" name="date"/>
+            ご来店予定日 <input class="block mt-1 w-full" type="date" name="date"/>
         </div>
         <div class="mt-4">
-            ご来店予定時間 <input id="close_time" class="block mt-1 w-full" type="time" name="time"/>
+            ご来店予定時間 <input class="block mt-1 w-full" type="time" name="time"/>
+        </div>
+        <div class="mt-4">
+          <select class="form-control" name="menu_id">
+            <option >-</option>
+            @foreach ($menus as $menu)
+
+          <option  value="{{$menu->id}}">{{ $menu->name }}</option>
+          @endforeach
+        </select>
         </div>
         <div>
             <input type="submit" value="送信"/>

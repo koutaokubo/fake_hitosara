@@ -66,7 +66,8 @@ class ReserveController extends Controller
     {
         $user = Auth::user();
         $store = Store::find($request->store_id);
-        return view('Reserve.createReserve', compact('user', 'store'));
+        $menus = $store->getMenuList;
+        return view('Reserve.createReserve', compact('user', 'store', 'menus'));
     }
 
     public function reserveConfirm(Request $request) {
@@ -75,7 +76,7 @@ class ReserveController extends Controller
         $reserve_limit = DB::table('stores')->select('reserve_limit')->where('id', $request->store_id)->get();
         // $current_reserve_limit = DB::table('store')->select('current_reserve_limit')->get();
         // $isAvailable = 
-        return view('Reserve.confirm', compact('user', 'store', 'reserve_limit'));
+        return view('Reserve.confirm', compact('user', 'store', 'reserve_limit', 'request'));
     }
 
     /**

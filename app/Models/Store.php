@@ -17,10 +17,6 @@ class Store extends Model
         'open_time'
     ];
 
-    protected $casts = [
-        'holiday' => 'array'
-    ];
-
     public function favoriteUsers() {
         return $this->belongsToMany(User::class, 'favorite');
     }
@@ -37,6 +33,6 @@ class Store extends Model
     }
 
     public function getMenuList() {
-        return $this->belongsToMany(Menu::class);
+        return $this->belongsToMany(Menu::class, 'menus');
     }
 }

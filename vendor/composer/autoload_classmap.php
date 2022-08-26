@@ -16,12 +16,12 @@ return array(
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
 
-    'App\\Http\\Controllers\\ReserveController' => $baseDir . '/app/Http/Controllers/ReserveController.php',
-    'App\\Http\\Controllers\\StoreController' => $baseDir . '/app/Http/Controllers/StoreController.php',
 
     'App\\Http\\Controllers\\FavoriteController' => $baseDir . '/app/Http/Controllers/FavoriteController.php',
     'App\\Http\\Controllers\\HomeFormController' => $baseDir . '/app/Http/Controllers/HomeFormController.php',
     'App\\Http\\Controllers\\ReserveController' => $baseDir . '/app/Http/Controllers/ReserveController.php',
+    'App\\Http\\Controllers\\SearchController' => $baseDir . '/app/Http/Controllers/SearchController.php',
+    'App\\Http\\Controllers\\StoreController' => $baseDir . '/app/Http/Controllers/StoreController.php',
 
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',
     'App\\Http\\Middleware\\Authenticate' => $baseDir . '/app/Http/Middleware/Authenticate.php',

@@ -565,12 +565,11 @@ class ComposerStaticInit95cccb7851e069ca256e9b445bb3b16b
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
 
-        'App\\Http\\Controllers\\ReserveController' => __DIR__ . '/../..' . '/app/Http/Controllers/ReserveController.php',
-        'App\\Http\\Controllers\\StoreController' => __DIR__ . '/../..' . '/app/Http/Controllers/StoreController.php',
-
         'App\\Http\\Controllers\\FavoriteController' => __DIR__ . '/../..' . '/app/Http/Controllers/FavoriteController.php',
         'App\\Http\\Controllers\\HomeFormController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeFormController.php',
         'App\\Http\\Controllers\\ReserveController' => __DIR__ . '/../..' . '/app/Http/Controllers/ReserveController.php',
+        'App\\Http\\Controllers\\SearchController' => __DIR__ . '/../..' . '/app/Http/Controllers/SearchController.php',
+        'App\\Http\\Controllers\\StoreController' => __DIR__ . '/../..' . '/app/Http/Controllers/StoreController.php',
 
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',

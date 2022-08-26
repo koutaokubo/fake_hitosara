@@ -19,10 +19,10 @@ use App\Http\Controllers\ContactFormController;
 Route::get('/home', [HomeFormController::class, 'index']);
 
 //すべてのユーザーに権限
-Route::group(['middleware' => ['auth', 'can:user-higher']], function () {
-    // ユーザ一覧
-    Route::get('/account', 'AccountController@index')->name('account.index');
-});
+// Route::group(['middleware' => ['auth', 'can:user-higher']], function () {
+//     // ユーザ一覧
+//     Route::get('/account', 'AccountController@index')->name('account.index');
+// });
 
 // システム管理者のみ
 Route::group(['middleware' => ['auth', 'can:system-only']], function () {

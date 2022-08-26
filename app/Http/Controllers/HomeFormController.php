@@ -22,7 +22,7 @@ class HomeFormController extends Controller
         $search = $request->input('search');
         $search_area = $request->input('area');
         $search_genres = $request->input('genres');
-        $Search_store = 0;
+        $Search_answer = Store::query();
 
         // //エリア検索
         // if($search_area>0){

@@ -12,7 +12,12 @@
         <table>
         @foreach ($article as $contact)
         <tr><td>お問い合わせの種類</td>
-            <td>{{ $contact->id }}</td></tr>
+            <td>@foreach ($category as $title)
+                @if($contact->category_id == $title->id )
+                    {{$title->name}}
+                @endif
+            @endforeach
+        </td></tr>
         <tr><td>ご意見・お問い合わせ内容</td>
             <td>{{ $contact->text }}</td></tr>
         </table>

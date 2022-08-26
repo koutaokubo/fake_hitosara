@@ -20,7 +20,8 @@ class ContactFormController extends Controller
         //送信完了画面
         $user = Auth::user();
         $article = Contact::where('user_id', auth()->id())->orderBy('created_at','desc')->take(1)->get();
-        return view('HomeForm.send', compact('user', 'article'));
+        $category = Category::All();
+        return view('HomeForm.send', compact('user', 'article', 'category'));
     }
 
     /**

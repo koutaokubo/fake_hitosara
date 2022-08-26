@@ -13,17 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('chats', function (Blueprint $table) {
+        Schema::create('rooms', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('room_id') 
-                ->references('id') 
-                ->on('users') 
-                ->onDelete('cascade');
-            $table->foreignId('user_id') 
-                ->references('id') 
-                ->on('users') 
-                ->onDelete('cascade');
-            $table->string('message');
             $table->timestamps();
         });
     }
@@ -35,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('chats');
+        Schema::dropIfExists('rooms');
     }
 };

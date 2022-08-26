@@ -40,10 +40,12 @@
           <tr>
             <td>{{$item->genre_id}}</td>
             <td>
-                <input class="btn btn-outline-success" type="button" value="詳細" name="detail">
+                {{-- <input class="btn btn-outline-success" type="button" value="詳細" name="detail"> --}}
+                <a href="{{route('store.detail', ['store_id' => $item->id, 'area_id' => $item->area_id])}}">詳細</a>
             </td>
             <td>
-              <input class="btn btn-outline-success" type="button" value="予約" name="reserve">
+              {{-- <input class="btn btn-outline-success" type="button" value="予約" name="reserve"> --}}
+              <a href="{{route('reserve.create', ['store_id' => $item->id])}}">予約</a>
             </td>
           </tr>
         </table>

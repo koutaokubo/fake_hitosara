@@ -23,14 +23,14 @@ class HomeFormController extends Controller
 
         //該当するデータを取得
         if(Str::length($search)>0){
-            $search_stores = Store::where('name','like',"%$search%")
+            $Search_store = Store::where('name','like',"%$search%")
             ->get();
             // $searchStoreName = DB::select('select name from stores where name like ?', [$search]);
         }else{
             $search_stores = Store::all();
             // $searchStoreName = Store::all();
         }
-        return view('HomeForm.index',compact('genres', 'area', 'user', 'search', 'search_stores'));
+        return view('HomeForm.index',compact('genres', 'area', 'user', 'search', 'Search_store'));
 
         // return view('Search_store',compact('search','Search_store'));
     }

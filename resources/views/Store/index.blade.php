@@ -17,9 +17,8 @@
     <table border="1">
         <tr>
             <th>お名前</th>
-            <th>郵便番号</th>
-            <th>エリア</th>
             <th>ジャンル</th>
+            <th>郵便番号</th>
             <th>都道府県</th>
             <th>住所</th>
             <th>営業開始時間</th>
@@ -32,10 +31,9 @@
             <tr>
 
                 <td>{{ $store->name }}</td>
+                <td>{{ $store->genre->food_genre }}</td>
                 <td>{{ $store->address_code }}</td>
                 <td>{{ $store->area->area_name }}</td>
-                <td>{{ $store->genre->food_genre }}</td>
-                <td>{{ $store->city }}</td>
                 <td>{{ $store->address }}</td>
                 <td>{{ $store->open_time }}</td>
                 <td>{{ $store->close_time }}</td>

@@ -12,10 +12,6 @@
         <label for="name">名前</label>
         <input type="text" name="name" id="name" value="{{old('name', $edit->name)}}">
     </div>
-    <div>
-        <label for="address_code">郵便番号</label>
-        <input type="text" name="address_code" id="address_code" value="{{old('address_code', $edit->address_code)}}">
-    </div>
     <div class="form-group">
         <label for="exampleFormControlSelect1">ジャンル</label>
         <select class="form-control" id="exampleFormControlSelect1" name="genre_id">
@@ -26,6 +22,10 @@
           @endforeach
         </select>
       </div>
+    <div>
+        <label for="address_code">郵便番号</label>
+        <input type="text" name="address_code" id="address_code" value="{{old('address_code', $edit->address_code)}}">
+    </div>
       <div class="form-group">
         <label for="exampleFormControlSelect1">エリア</label>
         <select class="form-control" id="exampleFormControlSelect1" name="area_id">
@@ -37,10 +37,6 @@
           @endforeach
         </select>
       </div>
-    <div>
-        <label for="city">都道府県</label>
-        <input type="text" name="city" id="city" value="{{old('city', $edit->city)}}">
-    </div>
     <div>
         <label for="address">住所</label>
         <input type="text" name="address" id="address" value="{{old('address', $edit->address)}}">

@@ -12,19 +12,19 @@
         <div>
              名前<input id="name" class="block mt-1 w-full" type="text" name="name"/>
         </div>
+        <div class="form-group">
+            <label for="exampleFormControlSelect1">ジャンル</label>
+            <select class="form-control" id="exampleFormControlSelect1" name="genre_id">
+                <option >-</option>
+                @foreach ($genres as $foods)
+
+              <option  value="{{$foods->id}}">{{ $foods->food_genre }}</option>
+              @endforeach
+            </select>
+          </div>
         <div>
            郵便番号 <input id="address_code" class="block mt-1 w-full" type="text" name="address_code"/>
        </div>
-       <div class="form-group">
-        <label for="exampleFormControlSelect1">ジャンル</label>
-        <select class="form-control" id="exampleFormControlSelect1" name="genre_id">
-            <option >-</option>
-            @foreach ($genres as $foods)
-
-          <option  value="{{$foods->id}}">{{ $foods->food_genre }}</option>
-          @endforeach
-        </select>
-      </div>
       <div class="form-group">
         <label for="exampleFormControlSelect1">エリア</label>
         <select class="form-control" id="exampleFormControlSelect1" name="area_id">
@@ -36,9 +36,6 @@
           @endforeach
         </select>
       </div>
-       <div>
-        都道府県<input id="city" class="block mt-1 w-full" type="text" name="city"/>
-   </div>
    <div>
     住所<input id="address" class="block mt-1 w-full" type="text" name="address"/>
 </div>

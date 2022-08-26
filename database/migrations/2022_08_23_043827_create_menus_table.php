@@ -13,14 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('menus', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->integer('charge');
-            $table->foreignId('store_id');
-            $table->date('course_time')->nullable();
-            $table->timestamps();
-        });
+        if (!Schema::hasTable('menus')) {
+            Schema::create('menus', function (Blueprint $table) {
+                $table->id();
+                $table->string('name');
+                $table->integer('charge');
+                $table->foreignId('store_id');
+                $table->date('course_time')->nullable();
+                $table->timestamps();
+            });
+        }
+        
     }
 
     /**

@@ -9,10 +9,12 @@ use Illuminate\Http\Request;
 
 class StoreController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-
-        return view('Store.index');
+        $stores = Store::all();
+        $genre = Genre::find($request->genre_id);
+        $area = Area::find($request->area_id);
+        return view('Store.index', compact('stores','genre', 'area','request'));
     }
     /**
      * Show the form for creating a new resource.
@@ -25,11 +27,8 @@ class StoreController extends Controller
         $stores = Store::all();
         $genres = Genre::all();
         $area = Area::all();
+
         return view('Store.create',compact('stores','genres', 'area'));
-
-
-
-
     }
     /**
      * Store a newly created resource in storage.
@@ -37,37 +36,62 @@ class StoreController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    public function confirm(Request $request)
+    {
+        $stores = Store::all();
+        $genre = Genre::find($request->genre_id);
+        $area = Area::find($request->area_id);
+
+
+        return view('Store.confirm',compact('stores','genre', 'area','request'));
+    }
     public function store(Request $request)
     {
-        $store = new Store();
+         if ($request->has('back')){
 
-        $store->fill($request->all())->save();
-        // validaion実行
+             return redirect('/store/create')->withInput();
+         }
 
-    // [確認]ボタンなら確認フォーム表示へ
+         if ($request->has('send')) {
+        $stores = new Store();
 
+        $stores->fill($request->all())->save();
+
+        return redirect('/store');
+     }
     }
       /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Reserve  $reserve
+     * @param  \App\Models\Store  $reserve
      * @return \Illuminate\Http\Response
      */
 
-    public function show(Reserve $reserve)
+    public function show(Store $store)
     {
-        //
+
+    }
+
+    public function storeDetail(Request $request) {
+        $store = Store::find($request->store_id);
+        $area = Area::find($request->area_id);
+        return view('Store.storeDetail', compact('store', 'area'));
     }
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Reserve  $reserve
+     * @param  \App\Models\Store  $store
      * @return \Illuminate\Http\Response
      */
 
-    public function edit(Reserve $reserve)
+    public function edit(Store $store,Request $request)
     {
-        //
+        $genres = Genre::all();
+        $area = Area::all();
+        // $genres = Genre::find($request->genre_id);
+        // $area = Area::find($request->area_id);
+        $edit=  Store::find($store->id);
+        return view('Store.edit', compact('edit','genres', 'area','store'));
     }
 
     /**
@@ -77,19 +101,24 @@ class StoreController extends Controller
      * @param  \App\Models\Reserve  $reserve
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Reserve $reserve)
+    public function update(Store $store,Request $request)
     {
-        //
+
+        $store =  Store::find($store->id);
+        $store->fill($request->all())->save();
+        return redirect('/store');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Reserve  $reserve
+     * @param  \App\Models\Store  $reserve
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Reserve $reserve)
+    public function destroy(Store $store)
     {
-        //
+        Store::find($store->id)->delete();
+
+        return redirect('/store');
     }
 }

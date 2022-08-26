@@ -29,17 +29,23 @@ Route::middleware([
     })->name('dashboard');
 });
 
-Route::post('/store/confirm', [StoreController ::class ,'store']);
-Route::resource('/store', StoreController::class);
+Route::post('/store/confirm', [StoreController ::class ,'confirm']);
 
-// Route::resource('/reserve', ReserveController::class)
-//     ->names(['index' => 'reserve.index',
-//             'create' => 'reserve.create',
-//             'store' => 'reserve.store'
-//             ])
-//     ->middleware('auth');
+Route::get('/store/detail/', [StoreController::class, 'storeDetail'])->name('store.detail');
+
+Route::resource('/store', StoreController::class);
+// Route::resource('/store', StoreController::class);
+
+Route::resource('/reserve', ReserveController::class)
+    ->names(['index' => 'reserve.index',
+            'create' => 'reserve.create',
+            'store' => 'reserve.store'
+            ])
+    ->middleware('auth');
+
 
 Route::get('/home', [HomeFormController::class, 'index']);
 
-Route::post('/like/{id}', [HomeFormController::class, 'index']);
+// Route::get('/store/show/', [ReserveController::class, 'getFavoriteUsers'])->name('store.show');
 
+Route::post('/reserve/confirm', [ReserveController::class, 'reserveConfirm'])->name('reserve.confirm');

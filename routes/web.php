@@ -4,7 +4,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\ReserveController;
 use App\Http\Controllers\HomeFormController;
-use App\Http\Controllers\ContactFormController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,22 +29,17 @@ Route::middleware([
     })->name('dashboard');
 });
 
-Route::get('/home', [HomeFormController::class, 'index']);
-
 Route::post('/store/confirm', [StoreController ::class ,'store']);
-
 Route::resource('/store', StoreController::class);
 
-Route::resource('/reserve', ReserveController::class)
-    ->names(['index' => 'reserve.index',
-            'create' => 'reserve.create',
-            'store' => 'reserve.store'
-            ])
-    ->middleware('auth');
-    
-Route::resource('contacts', ContactFormController::class)
-    ->except(['index', 'destroy', 'show']);
+// Route::resource('/reserve', ReserveController::class)
+//     ->names(['index' => 'reserve.index',
+//             'create' => 'reserve.create',
+//             'store' => 'reserve.store'
+//             ])
+//     ->middleware('auth');
 
-Route::get('/send', function(){return view('Contactform.send');});
+Route::get('/home', [HomeFormController::class, 'index']);
 
+Route::post('/like/{id}', [HomeFormController::class, 'index']);
 

@@ -18,7 +18,7 @@
     <!------ Include the above in your HEAD tag ---------->
 
     <nav class="navbar navbar-icon-top navbar-expand-md navbar-dark bg-dark">
-      <a class="navbar-brand" href="/home">FAKE HITOSARA</a>
+      <a class="navbar-brand" href="#">FAKE HITOSARA</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -46,7 +46,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/contacts/create">
+            <a class="nav-link" href="#">
               <i class="fa fa-envelope-o">
               </i>
               お問い合わせ
@@ -54,7 +54,7 @@
           </li>
         </ul>
         <ul class="navbar-nav ">
-        @if (isset($user))
+        @if ($user != null)
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <i class="fa fa-envelope-o">
@@ -72,7 +72,7 @@
               <a class="dropdown-item" href="#">ログアウト</a>
             </div>
           </li>
-        @elseif (isset($user) == null)
+        @elseif ($user == null)
             <li class="nav-item">
             <a class="nav-link" href="#">
                 ログイン

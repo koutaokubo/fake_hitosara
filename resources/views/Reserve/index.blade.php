@@ -8,8 +8,7 @@
 </head>
 <body>
     @foreach ($reserves as $reserve)
-        <p>{{$reserve->id}}</p>
-        <p>{{$user->name}}</p>
+        <p>{{$reserve->id}} {{$user->name}}</p>
     @endforeach
     @foreach ($stores as $store)
         <a href="{{ route('store.detail', ['store_id' => $store->id, 'area_id' => $store->area_id]) }}">{{$store->name}}</a>

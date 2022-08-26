@@ -5,6 +5,7 @@ use App\Http\Controllers\StoreController;
 use App\Http\Controllers\ReserveController;
 use App\Http\Controllers\HomeFormController;
 use App\Http\Controllers\ContactFormController;
+use App\Http\Controllers\FavoriteController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -58,13 +59,9 @@ Route::middleware([
 
 Route::post('/store/confirm', [StoreController ::class ,'store']);
 
-Route::resource('/store', StoreController::class);
-Route::post('/store/confirm', [StoreController ::class ,'confirm']);
-
 Route::get('/store/detail/', [StoreController::class, 'storeDetail'])->name('store.detail');
 
 Route::resource('/store', StoreController::class);
-// Route::resource('/store', StoreController::class);
 
 Route::resource('/reserve', ReserveController::class)
     ->names(['index' => 'reserve.index',
@@ -72,15 +69,7 @@ Route::resource('/reserve', ReserveController::class)
             'store' => 'reserve.store'
             ])
     ->middleware('auth');
-
-
-Route::resource('/reserve', ReserveController::class)
-    ->names(['index' => 'reserve.index',
-            'create' => 'reserve.create',
-            'store' => 'reserve.store'
-            ])
-    ->middleware('auth');
-    
-// Route::get('/store/show/', [ReserveController::class, 'getFavoriteUsers'])->name('store.show');
 
 Route::post('/reserve/confirm', [ReserveController::class, 'reserveConfirm'])->name('reserve.confirm');
+
+Route::get('/favorite', [FavoriteController::class, 'getFavoriteStores'])->name('favorite');

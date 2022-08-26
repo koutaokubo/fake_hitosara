@@ -18,4 +18,10 @@ class FavoriteController extends Controller
             $store->favoriteUser()->attach(request()->Auth::id());
         }
     }
+
+    public function getFavoriteStores() {
+        $user = Auth::user();
+        $favoriteStores = $user->favoriteStores;
+        return view('Store.favoriteStores', compact('favoriteStores'));
+    }
 }

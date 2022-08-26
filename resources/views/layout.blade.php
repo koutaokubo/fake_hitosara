@@ -39,7 +39,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{{route('reserve.index')}}">
               <i class="fa fa-envelope-o">
                 <span class="badge badge-warning">11</span>
               </i>
@@ -64,7 +64,7 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="#">プロフィール</a>
-                <a class="dropdown-item" href="#">お気に入り店舗</a>
+                <a class="dropdown-item" href="{{route('favorite')}}">お気に入り店舗</a>
                 @if ($user != null && $user->owner ==True)
                 <a class="dropdown-item" href="#">
                     店舗情報登録</a>

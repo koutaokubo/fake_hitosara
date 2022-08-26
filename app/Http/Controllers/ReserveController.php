@@ -20,10 +20,14 @@ class ReserveController extends Controller
      */
     public function index()
     {
-        //各モデルごとのデータ取得ができたか確認用
-        $reserves = Reserve::all();
-        $stores = Store::all();
         $user = Auth::user();
+        $reserves = Reserve::where('user_id', $user->id)->get();
+        // $stores = Store::all();
+        $stores = [];
+        foreach ($reserves as $key => $reserve) {
+            $store = Store::find($reserve->store_id);
+            $stores[] = $store;
+        }
         return view('Reserve.index',compact('reserves', 'user', 'stores'));
     }
 

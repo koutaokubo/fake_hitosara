@@ -1,19 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>確認画面</title>
+</head>
+<body>
+    <p>予約内容確認</p>
+    <ul>
+        <div>
+            <li>
+                <p>お名前：{{$user->name}}</p>
+                <p>メールアドレス：{{$user->email}}</p>
+                <p>電話番号:{{$user->tel}}</p>
+                <hr>
+            </li>
+        </div>
+        <div>
+            <li>
+                <p>お店：{{$store->name}}</p>
+                <p>予約日時：{{$request->date}} {{$request->time}}</p>
+            </li>
+        </div>
+        <hr>
+    </ul>
+    <form action="{{route('reserve.store') }}" method="POST">
+        <input type="hidden" name="reserve_date" value="{{$request->date}}">
+        <input type="hidden" name="reserve_time" value="{{$request->time}}">
+        <input type="hidden" name="store_id" value="{{$store->id}}">
+        <input type="hidden" name="user_id" value="{{$user->id}}">
+        <input type="hidden" name="menu_id" value="{{$request->menu_id}}">
+        <div>
+            <button class="btn btn-primary" type="submit" name="back">
+                <i class="fa-solid fa-caret-left"></i>
+                戻る
+            </button>
+            <button class="btn btn-primary" type="submit" name="send">
+                送信
+                <i class="fa-solid fa-caret-right"></i>
+            </button>
+        </div>
+        @csrf
+    </form>
 
-<p>登録内容確認</p>
-<ul>
-<li>
-名前：<p>{{$request->name}}</p>
-郵便番号<p>{{$request->address_code}}</p>
-ジャンル<p>{{$request->genre_id}}</p>
-エリア<p>{{$request->area_id}}</p>
-都道府県<p>{{$request->city}}</p>
-住所<p>{{$request->address}}</p>
-営業開始時間<p>{{$request->open_time}}</p>
-営業終了時間<p>{{$request->close_time}}</p>
-予約締切時間<p>{{$request->reverse_limit}}</p>
-</li>
-</ul>
-
-
-
-
+</body>
+</html>

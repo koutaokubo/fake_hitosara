@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -18,18 +18,21 @@
        <div class="form-group">
         <label for="exampleFormControlSelect1">ジャンル</label>
         <select class="form-control" id="exampleFormControlSelect1" name="genre_id">
-          <option value="">-</option>
-          @foreach ($genres as $foods)
-          <option>{{ $foods->food_genre }}</option>
+            <option >-</option>
+            @foreach ($genres as $foods)
+
+          <option  value="{{$foods->id}}">{{ $foods->food_genre }}</option>
           @endforeach
         </select>
       </div>
       <div class="form-group">
         <label for="exampleFormControlSelect1">エリア</label>
         <select class="form-control" id="exampleFormControlSelect1" name="area_id">
-          <option value="">-</option>
-          @foreach ($area as $city)
-          <option>{{ $city->area_name }}</option>
+            <option >-</option>
+            @foreach ($area as $city)
+
+
+          <option value="{{$city->id}}">{{ $city->area_name }}</option>
           @endforeach
         </select>
       </div>
@@ -46,10 +49,8 @@
    営業終了時間 <input id="close_time" class="block mt-1 w-full" type="time" name="close_time"/>
 </div>
 <div>
-   予約締切時間 <input id="reserve_limit" class="block mt-1 w-full" type="time" name="reserve_limit"/>
+   最大予約席数 <input id="reserve_limit" class="block mt-1 w-full" type="text" name="reserve_limit"/>
 </div>
-
-
         <div>
             <input type="submit" value="送信"/>
         </div>

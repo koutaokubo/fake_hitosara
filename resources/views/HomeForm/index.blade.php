@@ -6,8 +6,8 @@
 <form class="container-fluid me-2" action="/home" method="get">
     <div class="form-group">
         <label for="exampleFormControlSelect1">ジャンル</label>
-        <select class="form-control" id="exampleFormControlSelect1" name="genre">
-          <option>-</option>
+        <select class="form-control" id="exampleFormControlSelect1" name="genres" value ="{{ $genres }}">
+          <option value="">-</option>
           @foreach ($genres as $foods)
           <option value = {{$foods->id}}>{{ $foods->food_genre }}</option>
           @endforeach
@@ -15,24 +15,30 @@
       </div>
       <div class="form-group">
         <label for="exampleFormControlSelect1">エリア</label>
-        <select class="form-control" id="exampleFormControlSelect1" name="area">
-          <option>-</option>
+        <select class="form-control" id="exampleFormControlSelect1" name="area" value ="{{ $area }}">
+          <option value="">-</option>
           @foreach ($area as $city)
           <option value = {{$city->id}}>{{ $city->area_name }}</option>
           @endforeach
         </select>
       </div>
       <div>
-        {{-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"> --}}
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name=search value="{{ $search }}">
-        {{-- <button class="btn btn-outline-success" type="submit">Search</button> --}}
-        <button class="btn btn-outline-success" type="submit">Search</button>
+        <table>
+            <td>
+                {{-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"> --}}
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name=search value="{{ $search }}">
+            </td>
+            <td>
+                {{-- <button class="btn btn-outline-success" type="submit">Search</button> --}}
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </td>
+        </table>
         @if ($Search_store)
         @foreach ($Search_store as $item)
+        <p>検索結果</p>
         <table>
           <tr>
-            <caption align="top">検索結果</caption>
-            <td>{{$item->name}}</td>
+            <td>{{$item->genre_id}}</td>
             <td>
                 <input class="btn btn-outline-success" type="button" value="詳細" name="detail">
             </td>

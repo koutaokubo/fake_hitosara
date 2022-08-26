@@ -51,8 +51,6 @@
 <div>
    予約締切時間 <input id="reserve_limit" class="block mt-1 w-full" type="time" name="reserve_limit"/>
 </div>
-
-
         <div>
             <input type="submit" value="送信"/>
         </div>

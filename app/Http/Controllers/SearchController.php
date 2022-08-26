@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Store;
+
 use Illuminate\Support\Str;
 
 class SearchController extends Controller
@@ -22,4 +23,4 @@ class SearchController extends Controller
         }
         return view('Search_store',compact('search','Search_store'));
     }
-}
+

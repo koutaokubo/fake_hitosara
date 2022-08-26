@@ -29,15 +29,18 @@ Route::middleware([
     })->name('dashboard');
 });
 
-Route::post('/store/confirm', [StoreController ::class ,'store']);
+Route::post('/store/confirm', [StoreController ::class ,'confirm']);
 Route::resource('/store', StoreController::class);
+// Route::resource('/store', StoreController::class);
 
-// Route::resource('/reserve', ReserveController::class)
-//     ->names(['index' => 'reserve.index',
-//             'create' => 'reserve.create',
-//             'store' => 'reserve.store'
-//             ])
-//     ->middleware('auth');
+
+Route::resource('/reserve', ReserveController::class)
+    ->names(['index' => 'reserve.index',
+            'create' => 'reserve.create',
+            'store' => 'reserve.store'
+            ])
+    ->middleware('auth');
+
 
 Route::get('/home', [HomeFormController::class, 'index']);
 

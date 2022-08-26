@@ -7,6 +7,7 @@
     <title>Document</title>
 </head>
 <body>
+
     @foreach ($stores as $store)
         <p>{{$store->id}}</p>
         @foreach ($reserves as $reserve)
@@ -14,6 +15,7 @@
             <p>{{$user->name}}</p>
             <p>{{$favoriteStore}}</p>
         @endforeach
+
     @endforeach
 </body>
 </html>

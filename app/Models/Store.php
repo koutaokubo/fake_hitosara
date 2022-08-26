@@ -13,6 +13,8 @@ class Store extends Model
     protected $fillable = [
         'name',
         'address_code',
+        'area_id',
+        'genre_id',
         'city',
         'address',
         'open_time',
@@ -22,5 +24,11 @@ class Store extends Model
 
     public function favoriteUsers() {
         return $this->belongsToMany(User::class);
+    }
+    public function area(){
+        return $this->belongsTo(Area::class);
+    }
+    public function genre(){
+        return $this->belongsTo(Genre::class);
     }
 }

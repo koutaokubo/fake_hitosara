@@ -10,8 +10,10 @@
     <p>{{$store->name}}</p>
     <p>{{$store->address_code}}</p>
     <p>{{$area->area_name}}{{$store->city}}{{$store->address}}</p>
-    <form action="{{ route('reserve.create', ['store_id' => $store->id]) }}">
+    <form action="{{ route('reserve.create') }}">
         <div>
+            {{$store}}
+            <input type="hidden" name="store_id" value="{{$store->id}}">
             <input type="submit" value="作成">
         </div>
     </form>

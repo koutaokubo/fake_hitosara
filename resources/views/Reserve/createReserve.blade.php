@@ -7,7 +7,7 @@
     <title>予約作成</title>
 </head>
 <body>
-    <form method="post" action="{{ route('reserve.confirm'), ['user_id' => $user->id, 'store_id' => $store->id] }}" name="action" value="confirm">
+    <form method="post" action="{{ route('reserve.confirm') }}" name="action" value="confirm">
         @csrf
         <div class="mt-4">
             ご来店予定日 <input id="open_time" class="block mt-1 w-full" type="date" name="date"/>
@@ -17,6 +17,10 @@
         </div>
         <div>
             <input type="submit" value="送信"/>
+        </div>
+        <div>
+          <input type="hidden" name="user_id" value="{{$user->id}}">
+          <input type="hidden" name="store_id" value="{{$store->id}}">
         </div>
     </form>
 </body>

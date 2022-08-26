@@ -42,4 +42,4 @@ Route::get('/home', [HomeFormController::class, 'index']);
 
 Route::get('/store/show/', [ReserveController::class, 'storeDetail'])->name('store.show');
 
-Route::get('/reserve/confirm', [ReserveController::class, 'reserveConfirm'])->name('reserve.confirm');
+Route::post('/reserve/confirm', [ReserveController::class, 'reserveConfirm'])->name('reserve.confirm');

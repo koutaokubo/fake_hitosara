@@ -13,7 +13,9 @@
         @foreach ($contacts as $contact)
         <tr><td>お問い合わせの種類</td>
             <td>
-                {{$contact->category->name}}
+            @foreach ($article->categories as $category)
+            {{ $category->name }}
+            @endforeach
         </td></tr>
         <tr><td>ご意見・お問い合わせ内容</td>
             <td>{{ $contact->text }}</td></tr>

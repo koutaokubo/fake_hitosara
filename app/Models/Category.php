@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     use HasFactory;
-    public function Categories()
+    public function Users()
     {
         return $this->belongsToMany(User::class);
     }

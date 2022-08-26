@@ -7,7 +7,7 @@
     <div class="form-group">
         <label for="exampleFormControlSelect1">ジャンル</label>
         <select class="form-control" id="exampleFormControlSelect1" name="genres" value ="{{ $genres }}">
-          <option>-</option>
+          <option value="">-</option>
           @foreach ($genres as $foods)
           <option value = {{$foods->id}}>{{ $foods->food_genre }}</option>
           @endforeach
@@ -16,22 +16,13 @@
       <div class="form-group">
         <label for="exampleFormControlSelect1">エリア</label>
         <select class="form-control" id="exampleFormControlSelect1" name="area" value ="{{ $area }}">
-          <option>-</option>
+          <option value="">-</option>
           @foreach ($area as $city)
           <option value = {{$city->id}}>{{ $city->area_name }}</option>
           @endforeach
         </select>
       </div>
       <div>
-<<<<<<< HEAD
-          {{-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"> --}}
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name=search value="{{ $search }}">
-          {{-- <button class="btn btn-outline-success" type="submit">Search</button> --}}
-            @foreach ($search_stores as $store)
-              <p>{{$store->name}}</p>
-            @endforeach
-          <button class="btn btn-outline-success" type="submit">Search</button>
-=======
         <table>
             <td>
                 {{-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"> --}}
@@ -58,7 +49,6 @@
         </table>
         @endforeach
         @endif
->>>>>>> origin/search
       </div>
     @csrf
     </div>

@@ -23,4 +23,4 @@ class SearchController extends Controller
         }
         return view('ReserveForm.index',compact('search','search_stores'));
     }
-
+}

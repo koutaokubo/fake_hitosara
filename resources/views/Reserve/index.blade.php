@@ -10,11 +10,11 @@
 
     @foreach ($stores as $store)
         <p>{{$store->id}}</p>
-
-    @foreach ($reserves as $reserve)
-        <p>{{$reserve->id}}</p>
-        <p>{{$user->name}}</p>
-        <p>{{$favoriteStore}}</p>
+        @foreach ($reserves as $reserve)
+            <p>{{$reserve->id}}</p>
+            <p>{{$user->name}}</p>
+            <p>{{$favoriteStore}}</p>
+        @endforeach
 
     @endforeach
 </body>

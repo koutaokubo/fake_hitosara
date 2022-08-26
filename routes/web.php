@@ -41,6 +41,7 @@ Route::resource('/reserve', ReserveController::class)
             ])
     ->middleware('auth');
 
+
 Route::get('/home', [HomeFormController::class, 'index']);
 
 Route::post('/like/{id}', [HomeFormController::class, 'index']);

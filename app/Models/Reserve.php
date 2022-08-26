@@ -14,6 +14,7 @@ class Reserve extends Model
 
     protected $fillable = [
         'reserve_date',
+        'reserve_time',
         'store_id',
         'user_id',
         'menu_id',
@@ -29,5 +30,10 @@ class Reserve extends Model
 
     public function getReserveMenu() {
         return $this->belongsToMany(Menu::class);
+    }
+
+    public function getCurrentReserveNumber(int $store_id, String $reserve_date): int
+    {
+        return Reserve::where('store_id', $store_id)->where('reserve_date', $reserve_date)->count();
     }
 }

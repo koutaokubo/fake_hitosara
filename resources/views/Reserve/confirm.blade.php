@@ -26,7 +26,8 @@
         <hr>
     </ul>
     <form action="{{route('reserve.store') }}" method="POST">
-        <input type="hidden" name="reserve_date" value="{{$request->date}} {{$request->time}}">
+        <input type="hidden" name="reserve_date" value="{{$request->date}}">
+        <input type="hidden" name="reserve_time" value="{{$request->time}}">
         <input type="hidden" name="store_id" value="{{$store->id}}">
         <input type="hidden" name="user_id" value="{{$user->id}}">
         <input type="hidden" name="menu_id" value="{{$request->menu_id}}">

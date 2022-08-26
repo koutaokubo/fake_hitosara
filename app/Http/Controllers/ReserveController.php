@@ -81,9 +81,16 @@ class ReserveController extends Controller
      */
     public function store(Request $request)
     {
+        $store = Store::find($request->store_id);
         $reserve = new Reserve;
-        $reserve->fill($request->all())->save();
-        return redirect('/');
+        $numberOfSeats = $reserve->getCurrentReserveNumber($request->store_id, $request->reserve_date);
+        if(($store->reserve_limit - $numberOfSeats) > 0) {
+            $reserve->fill($request->all())->save();
+            $request->session()->regenerateToken();
+            return view('Reserve/finish', compact('numberOfSeats'));
+        } else {
+            echo('sorry');
+        }
     }
 
     /**

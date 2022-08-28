@@ -99,7 +99,9 @@ class StoreController extends Controller
     public function storeDetail(Request $request) {
         $store = Store::find($request->store_id);
         $area = Area::find($request->area_id);
-        return view('Store.storeDetail', compact('store', 'area'));
+        $holiday = Holiday::where('store_id', '=', $request->store_id)->first();
+        $holidays = $holiday->getHolidays();
+        return view('Store.storeDetail', compact('store', 'area', 'holidays'));
     }
     /**
      * Show the form for editing the specified resource.

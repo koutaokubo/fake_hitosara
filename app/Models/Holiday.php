@@ -77,4 +77,16 @@ class Holiday extends Model
 	function isCloseSunday(){
 		return $this->sunday == Holiday::CLOSE;
 	}
+
+	public function getHolidays() {
+		return $holidays = array(
+			"日曜日" => $this->sunday,
+			"月曜日" => $this->monday,
+			"火曜日" => $this->tuesday,
+			"水曜日" => $this->wednesday,
+			"木曜日" => $this->thursday,
+			"金曜日" => $this->friday,
+			"土曜日" => $this->saturday
+		);
+	}
 }

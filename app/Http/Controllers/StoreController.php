@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Store;
 use App\Models\Genre;
 use App\Models\Area;
+use App\Models\Holiday;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class StoreController extends Controller
@@ -38,12 +41,11 @@ class StoreController extends Controller
      */
     public function confirm(Request $request)
     {
-        $stores = Store::all();
         $genre = Genre::find($request->genre_id);
         $area = Area::find($request->area_id);
+        $user_id = Auth::id();
 
-
-        return view('Store.confirm',compact('stores','genre', 'area','request'));
+        return view('Store.confirm',compact('genre', 'area','request', 'user_id'));
     }
     public function store(Request $request)
     {
@@ -53,12 +55,34 @@ class StoreController extends Controller
          }
 
          if ($request->has('send')) {
-        $stores = new Store();
 
-        $stores->fill($request->all())->save();
+            try {
+                DB::beginTransaction();
 
-        return redirect('/store');
-     }
+                $stores = new Store();
+
+                $stores->fill($request->all())->save();
+
+                $store = DB::table('stores')->latest('id')->where('user_id', $request->user_id)->first();
+
+                $setting = Holiday::create([
+                    'store_id' => $store->id,
+                    'sunday' => $request->sunday,
+                    'monday' => $request->monday,
+                    'tuesday' => $request->tuesday,
+                    'wednesday' => $request->wednesday,
+                    'thursday' => $request->thursday,
+                    'friday' => $request->friday,
+                    'saturday' => $request->saturday,
+                ]);
+
+                DB::commit();
+
+                return redirect('/store');
+            } catch (Throwable $e) {
+                DB::rollback();
+            }
+        }
     }
       /**
      * Display the specified resource.

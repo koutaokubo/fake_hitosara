@@ -57,7 +57,7 @@ Route::middleware([
     })->name('dashboard');
 });
 
-Route::post('/store/confirm', [StoreController ::class ,'store']);
+Route::post('/store/confirm', [StoreController ::class ,'confirm']);
 
 Route::get('/store/detail/', [StoreController::class, 'storeDetail'])->name('store.detail');
 

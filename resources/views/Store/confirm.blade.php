@@ -11,6 +11,7 @@
 <p>営業開始時間:{{$request->open_time}}</p>
 <p>営業終了時間:{{$request->close_time}}</p>
 <p>予約締切時間:{{$request->reserve_limit}}</p>
+<p>定休日：{{$request->sunday}}{{$request->monday}}{{$request->tuesday}}{{$request->wednesday}}{{$request->thursday}}{{$request->friday}}{{$request->saturday}}</p>
 </li>
 </ul>
 <form action="/store" method="POST">
@@ -24,6 +25,14 @@
     <input type="hidden" name="open_time" value="{{$request->open_time}}">
     <input type="hidden" name="close_time" value="{{$request->close_time}}">
     <input type="hidden" name="reserve_limit" value="{{$request->reserve_limit}}">
+    <input type="hidden" name="user_id" value="{{$user_id}}">
+    <input type="hidden" name="sunday" value="{{$request->sunday}}">
+    <input type="hidden" name="monday" value="{{$request->monday}}">
+    <input type="hidden" name="tuesday" value="{{$request->tuesday}}">
+    <input type="hidden" name="wednesday" value="{{$request->wednesday}}">
+    <input type="hidden" name="thursday" value="{{$request->thursday}}">
+    <input type="hidden" name="friday" value="{{$request->friday}}">
+    <input type="hidden" name="saturday" value="{{$request->saturday}}">
 
     <div>
 

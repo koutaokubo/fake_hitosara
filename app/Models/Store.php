@@ -24,6 +24,7 @@ class Store extends Model
         'close_time',
         'reserve_limit',
         'holiday_id',
+        'user_id',
     ];
 
     public function favoriteUsers() {

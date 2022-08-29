@@ -88,13 +88,15 @@ class ContactFormController extends Controller
      */
     public function edit($id)
     {
+        $category;
         //管理者が店舗用に変更するためのページ
         if($id){
             $contacts = Contact::where('id', $id)->get();
             foreach($contacts as $contact){
             $send_user = DB::table('users')->where('id', $contact->user_id)->first();
+                $category = $contact->category;
             }
-            return view('ContactForm.edit',compact('contacts', 'send_user'));
+            return view('ContactForm.edit',compact('contacts', 'send_user', 'category'));
         }else{
             return redirect('/contacts/0');
         }

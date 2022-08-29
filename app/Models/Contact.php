@@ -10,7 +10,7 @@ class Contact extends Model
 {
     use HasFactory;
 
-    public function Users()
+    public function User()
     {
         return $this->belongsTo(User::class);
     }

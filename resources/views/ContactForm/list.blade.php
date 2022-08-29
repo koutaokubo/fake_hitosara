@@ -10,7 +10,7 @@
     @foreach ($contacts as $contact)
     <tr>
     <td>{{ $contact->id }}</td>
-    <td>{{ $contact->user_id }}</td>
+    <td>{{ $contact->User->name }}</td>
     <td>{{ $contact->category_id }}</td>
     <td>{{ $contact->created_at }}</td>
     <td><a href="/contacts/{{$contact->id}}/edit">詳細</a></td>

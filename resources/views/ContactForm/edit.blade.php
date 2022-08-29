@@ -26,9 +26,9 @@
       </tr>
       <tr>
         <th scope="row">お問い合わせジャンル</th>
-        @foreach ($article->categories as $category)
+        {{-- @foreach ($article->categories as $category) --}}
           <td colspan="2">{{ $category->name }}</td>
-        @endforeach
+        {{-- @endforeach --}}
     </tr>
     <tr>
         <th scope="row">お問い合わせ・質問内容</th>

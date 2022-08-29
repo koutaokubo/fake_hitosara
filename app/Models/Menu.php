@@ -13,7 +13,8 @@ class Menu extends Model
     protected $fillable = [
         'name',
         'charge',
-        'course_time'
+        'course_time',
+        'store_id',
     ];
 
     public function getStore() {

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use App\Models\Reserve;
 use App\Models\Menu;
+use App\Models\Holiday;
 
 class Store extends Model
 {
@@ -14,14 +15,16 @@ class Store extends Model
 
     protected $fillable = [
         'name',
+        'genre_id',
         'address_code',
         'area_id',
-        'genre_id',
-        'city',
         'address',
+        'city',
         'open_time',
         'close_time',
-        'reserve_limit'
+        'reserve_limit',
+        'holiday_id',
+        'user_id',
     ];
 
     public function favoriteUsers() {
@@ -47,5 +50,15 @@ class Store extends Model
     }
     public function genre(){
         return $this->belongsTo(Genre::class);
+    }
+    
+    /**
+     * Get the holiday associated with the Store
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function holiday(): HasOne
+    {
+        return $this->hasOne(Holiday::class);
     }
 }

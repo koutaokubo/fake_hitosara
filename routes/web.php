@@ -32,7 +32,7 @@ Route::group(['middleware' => ['auth', 'can:system-only']], function () {
 
 // 店舗管理者以上
 Route::group(['middleware' => ['auth', 'can:admin-higher']], function () {
-    
+
 });
 
 
@@ -57,7 +57,7 @@ Route::middleware([
     })->name('dashboard');
 });
 
-Route::post('/store/confirm', [StoreController ::class ,'store']);
+Route::post('/store/confirm', [StoreController ::class ,'confirm']);
 
 Route::get('/store/detail/', [StoreController::class, 'storeDetail'])->name('store.detail');
 

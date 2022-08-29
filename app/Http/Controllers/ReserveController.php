@@ -6,9 +6,11 @@ use App\Models\Reserve;
 use App\Models\User;
 use App\Models\Store;
 use App\Models\Area;
+use App\Models\Holiday;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use DateTime;
 // use App\Http\Requests\StoreRequest;
 
 class ReserveController extends Controller
@@ -18,6 +20,17 @@ class ReserveController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    const days = [
+        '日曜日' => 0,
+        '月曜日' => 1,
+        '火曜日' => 2,
+        '水曜日' => 3,
+        '木曜日' => 4,
+        '金曜日' => 5,
+        '土曜日' => 6,
+    ];
+
     public function index()
     {
         $user = Auth::user();
@@ -69,12 +82,27 @@ class ReserveController extends Controller
     }
 
     public function reserveConfirm(Request $request) {
+        $dateTime = new Datetime($request->date.$request->time);
+        $numberOfDay = $dateTime->format('w');
         $user = User::find($request->user_id);
         $store = Store::find($request->store_id);
-        $reserve_limit = DB::table('stores')->select('reserve_limit')->where('id', $request->store_id)->get();
-        // $current_reserve_limit = DB::table('store')->select('current_reserve_limit')->get();
-        // $isAvailable = 
-        return view('Reserve.confirm', compact('user', 'store', 'reserve_limit', 'request'));
+        $holiday = Holiday::where('store_id', '=', $request->store_id)->first();
+        $holidays = $holiday->getHolidays();
+        $key = "";
+        foreach ($this::days as $key => $value) {
+            if ($value == $numberOfDay) {
+                $key = $key;
+                break;
+            }
+        }
+        if ($holidays[$key] == 2) {
+            echo ('休日です');
+        } else {
+            $reserve_limit = DB::table('stores')->select('reserve_limit')->where('id', $request->store_id)->get();
+            // $current_reserve_limit = DB::table('store')->select('current_reserve_limit')->get();
+            // $isAvailable = 
+            return view('Reserve.confirm', compact('user', 'store', 'reserve_limit', 'request'));       
+        }
     }
 
     /**

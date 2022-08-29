@@ -8,6 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <!-- bootstrap.css を読み込みする -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link href="/css/app.css" rel="stylesheet">
     </head>
 
 
@@ -54,17 +55,18 @@
           </li>
         </ul>
         <ul class="navbar-nav ">
-        @if (isset($user))
+        
+        @if (Auth::check())
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <i class="fa fa-envelope-o">
               </i>
-              {{$user->name}}さん
+              {{ Auth::user()->name }}さん
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="#">プロフィール</a>
                 <a class="dropdown-item" href="{{route('favorite')}}">お気に入り店舗</a>
-                @if ($user != null && $user->owner ==True)
+                @if (Auth::check() && Auth::user()->role !=0)
                 <a class="dropdown-item" href="#">
                     店舗情報登録</a>
                 @endif
@@ -72,7 +74,7 @@
               <a class="dropdown-item" href="#">ログアウト</a>
             </div>
           </li>
-        @elseif (isset($user) == null)
+        @else
             <li class="nav-item">
             <a class="nav-link" href="#">
                 ログイン

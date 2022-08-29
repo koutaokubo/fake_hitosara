@@ -32,7 +32,7 @@ Route::group(['middleware' => ['auth', 'can:system-only']], function () {
 
 // 店舗管理者以上
 Route::group(['middleware' => ['auth', 'can:admin-higher']], function () {
-    
+
 });
 
 

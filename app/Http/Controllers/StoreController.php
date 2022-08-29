@@ -9,6 +9,8 @@ use App\Models\Holiday;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreRequest;
+
 
 class StoreController extends Controller
 {
@@ -35,18 +37,22 @@ class StoreController extends Controller
     }
     /**
      * Store a newly created resource in storage.
-     *
+     *@param  \App\Http\Requests\StoreRequest
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function confirm(Request $request)
+    public function confirm(StoreRequest $request)
     {
+
+        $stores = Store::all();
         $genre = Genre::find($request->genre_id);
         $area = Area::find($request->area_id);
         $user_id = Auth::id();
 
         return view('Store.confirm',compact('genre', 'area','request', 'user_id'));
     }
+
+
     public function store(Request $request)
     {
          if ($request->has('back')){
@@ -127,7 +133,7 @@ class StoreController extends Controller
      * @param  \App\Models\Reserve  $reserve
      * @return \Illuminate\Http\Response
      */
-    public function update(Store $store,Request $request)
+    public function update(Store $store,StoreRequest $request)
     {
 
         $store =  Store::find($store->id);

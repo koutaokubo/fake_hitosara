@@ -7,8 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-
-  {{-- @if ($errors->any())
+    @if ($errors->any())
     <div class="alert alert-danger mt-3">
         <ul>
             @foreach ($errors->all() as $error)
@@ -16,7 +15,7 @@
             @endforeach
         </ul>
     </div>
-  @endif --}}
+@endif
     <form method="post" action="/store/confirm" name="action" value="confirm">
         @csrf
         <div>
@@ -31,26 +30,22 @@
             <option >-</option>
             @foreach ($genres as $foods)
 
-          <option <option  value="{{$foods->id}}"
-            @if ($foods->id == old('genre_id') )
-              selected 
-            @endif
-                >{{ $foods->food_genre }}</option>
+          <option  value="{{$foods->id}}">{{ $foods->food_genre }}</option>
           @endforeach
         </select>
       </div>
       <div class="form-group">
         <label for="exampleFormControlSelect1">エリア</label>
-        <select class="form-control" id="exampleFormControlSelect1" name="area_id">
+        <select class="form-control" id="exampleFormControlSelect1" name="area_id" value="{{old('area_id')}}">
             <option >-</option>
             @foreach ($area as $city)
 
 
-            <option value="{{$city->id}}"
-              @if ($city->id == old('area_id') )
-              selected 
-              @endif
-              >{{ $city->area_name }}</option>
+          <option value="{{$city->id}}"
+            @if ($city->id == old('area_id') )
+            selected
+            @endif
+            >{{ $city->area_name }}</option>
           @endforeach
         </select>
       </div>

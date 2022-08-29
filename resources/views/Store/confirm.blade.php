@@ -14,10 +14,11 @@
 <p>ジャンル:{{$genre->food_genre}}</p>
 <p>郵便番号:{{$request->address_code}}</p>
 <p>エリア:{{$area->area_name}}</p>
-<p>住所:{{$request->address}}</p>
+<p>市区町村:{{$request->address}}</p>
+<p>それ以降の住所{{$request->city}}</p>
 <p>営業開始時間:{{$request->open_time}}</p>
 <p>営業終了時間:{{$request->close_time}}</p>
-<p>予約締切時間:{{$request->reserve_limit}}</p>
+<p>最大予約席数:{{$request->reserve_limit}}</p>
 <p>定休日：{{$request->sunday}}{{$request->monday}}{{$request->tuesday}}{{$request->wednesday}}{{$request->thursday}}{{$request->friday}}{{$request->saturday}}</p>
 </li>
 </ul>
@@ -28,6 +29,7 @@
     <input type="hidden" name="address_code" value="{{$request->address_code}}">
     <input type="hidden" name="area_id" value="{{$request->area_id}}">
     <input type="hidden" name="address" value="{{$request->address}}">
+    <input type="hidden" name="city" value="{{$request->city}}">
     <input type="hidden" name="open_time" value="{{$request->open_time}}">
     <input type="hidden" name="close_time" value="{{$request->close_time}}">
     <input type="hidden" name="reserve_limit" value="{{$request->reserve_limit}}">

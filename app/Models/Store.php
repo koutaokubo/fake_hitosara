@@ -19,6 +19,7 @@ class Store extends Model
         'address_code',
         'area_id',
         'address',
+        'city',
         'open_time',
         'close_time',
         'reserve_limit',

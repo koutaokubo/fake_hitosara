@@ -34,7 +34,8 @@ class ReserveController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $reserves = Reserve::where('user_id', $user->id)->get();
+        // $reserves = Reserve::where('user_id', $user->id)->get();
+        $reserves = $user->reserves;
         // $stores = Store::all();
         $stores = [];
         foreach ($reserves as $key => $reserve) {

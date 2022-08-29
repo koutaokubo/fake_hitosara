@@ -63,6 +63,8 @@ Route::get('/store/detail/', [StoreController::class, 'storeDetail'])->name('sto
 
 Route::resource('/store', StoreController::class);
 
+Route::get('/reserve/list', [ReserveController::class, 'getReserveList'])->name('reserve.list');
+
 Route::resource('/reserve', ReserveController::class)
     ->names(['index' => 'reserve.index',
             'create' => 'reserve.create',

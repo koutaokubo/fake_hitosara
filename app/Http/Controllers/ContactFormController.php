@@ -19,7 +19,11 @@ class ContactFormController extends Controller
     {
         //送信完了画面
         $contacts = Contact::where('user_id', auth()->id())->orderBy('created_at','desc')->take(1)->get();
-        return view('HomeForm.send', compact('contacts'));
+        $categories = [];
+        foreach ($contacts as $key => $value) {
+            $categories[] = $value->category;
+        }
+        return view('HomeForm.send', compact('contacts', 'categories'));
     }
 
     /**

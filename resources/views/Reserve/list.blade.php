@@ -47,7 +47,7 @@
         @endforeach
     </table>
 @else
-    <p>お問い合わせがありません</p>
+    <p>店舗がありません</p>
 @endif
 
 </div>

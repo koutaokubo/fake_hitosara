@@ -62,12 +62,17 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
-Route::get('/menu/create', [MenuController ::class ,'create']);
-Route::post('/menu/confirm', [MenuController ::class ,'confirm']);
+
+//メニュー
 Route::post('/menu', [MenuController ::class ,'store']);
+Route::get('/menu/create/{id}', [MenuController ::class ,'create']);
+Route::post('/menu/confirm', [MenuController ::class ,'confirm']);
+Route::get('/menu/list/{id}', [MenuController ::class ,'list']);
+Route::get('/menu/edit/{id}', [MenuController ::class ,'edit']);
+Route::post('/menu/update', [MenuController ::class ,'update']);
+Route::post('/menu/delete', [MenuController ::class ,'destroy']);
 
 Route::post('/store/confirm', [StoreController ::class ,'confirm']);
-
 Route::get('/store/detail/', [StoreController::class, 'storeDetail'])->name('store.detail');
 
 Route::resource('/store', StoreController::class)

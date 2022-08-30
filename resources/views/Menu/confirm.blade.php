@@ -31,7 +31,7 @@
 <div class="mb-3 row">
         <label>店名:</label>
         <div class="col-sm-10">
-        {{$stores->name}}
+        {{$request->store_name}}
         </div>
 </div>
 
@@ -47,7 +47,7 @@
             <i class="fa-solid fa-caret-left"></i>
             戻る
         </button>
-        <button class="btn btn-primary" type="submit" name="send">
+        <button class="btn btn-primary btn-lg" type="submit" name="send">
             送信
             <i class="fa-solid fa-caret-right"></i>
         </button>

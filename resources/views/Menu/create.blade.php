@@ -9,6 +9,13 @@
     <form method="post" action="/menu/confirm" name="action" >
         @csrf
         <div>
+          <label for="store_id" class="form-label">店名
+            {{old('store_name', $stores->name)}}
+            <input id="store_name" class="form-control" type="hidden" name="store_name" value="{{old('store_name', $stores->name)}}">
+            <input id="store_id" class="form-control" type="hidden" name="store_id" value="{{old('store_id', $stores->id)}}"/>
+          </label>
+        </div>
+        <div>
           <label for="name" class="form-label">コース名
             <input id="name" class="form-control" type="text" name="name" value="{{old('name')}}"/>
           </label>
@@ -25,17 +32,6 @@
             <input id="course_time" class="form-control" type="time" name="course_time" value="{{old('course_time')}}"/>
           </label>
         </div>
-        
-      <div class="w-25 form-group">店名
-        <label for="exampleFormControlSelect1"></label>
-        <select class="form-control" id="exampleFormControlSelect1" name="store_id">
-            <option >-</option>
-            @foreach ($stores as $store)
-
-          <option  value="{{$store->id}}">{{ $store->name }}</option>
-          @endforeach
-        </select>
-      </div>
 
       <div class="text-center">
         <input type="submit" class="btn btn-primary btn-lg" value="送信">

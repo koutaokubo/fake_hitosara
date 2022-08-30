@@ -6,6 +6,9 @@
 @can('system-only')
 
 @if ($contacts != null)
+<br>
+<h2>ご意見・お問い合わせ詳細</h2>
+<br>
 @foreach ($contacts as $article)
 <div class="m-5">
 

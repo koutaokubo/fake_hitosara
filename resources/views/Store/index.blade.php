@@ -30,6 +30,8 @@
     </thread>
 
         @foreach ($stores as $store)
+        <!-- 自分の作った店舗のみ・管理者のみ全店表示 -->
+        @if (Auth::check() && $store->user_id == Auth::user()->id || @can('system-only'))
             <tr>
 
                 <td>{{ $store->name }}</td>
@@ -40,14 +42,20 @@
                 <td>{{ $store->open_time }}</td>
                 <td>{{ $store->close_time }}</td>
                 <td>{{ $store->reserve_limit }}</td>
-                @if($store->id==$user_id)
                 <td>
-                <form action="menu/create" method="GET">
+                <form action="menu/create/{{$store->id}}" method="GET">
                     <div>
                         <input type="submit" value="メニュー登録">
                     </div>
                 </form>
-            </td>
+                </td>
+                <td>
+                <form action="menu/list/{{$store->id}}" method="GET">
+                    <div>
+                        <input type="submit" value="メニュー一覧">
+                    </div>
+                </form>
+                </td>
                 <td>
 
                     <form action="/store/{{ $store->id }}/edit" method="get">
@@ -57,15 +65,15 @@
                 </td>
                 <td>
 
-                    <form action="/store/{{ $store->id }}" method="post"  >
+                    <form action="/store/{{ $store->id }}" method="post" >
                         <input type="submit"  name="delete" value="削除">
                         <input type="hidden" name="_method" value="DELETE">
 
                         @csrf
                     </form>
                 </td>
-                 @endif
             </tr>
+            @endif
         @endforeach
     </table>
 @else

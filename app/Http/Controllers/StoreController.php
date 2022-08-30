@@ -6,10 +6,12 @@ use App\Models\Store;
 use App\Models\Genre;
 use App\Models\Area;
 use App\Models\Holiday;
+use App\Models\Reserve;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreRequest;
+use Carbon\Carbon;
 
 
 class StoreController extends Controller
@@ -120,7 +122,18 @@ class StoreController extends Controller
         $area = Area::find($request->area_id);
         $holiday = Holiday::where('store_id', '=', $request->store_id)->first();
         $holidays = $holiday->getHolidays();
-        return view('Store.storeDetail', compact('store', 'area', 'holidays'));
+
+        //データベースから、今日から7日に予約されたデータをを取り出す
+        $dt = Carbon::today();
+        $format = 'MM/DD (ddd)';
+        $weekday = ['日曜日', '月曜日', '火曜日', '水曜日', '木曜日', '金曜日', '土曜日'];
+        for ($i=0; $i < 7 ; $i++) {
+            $search_date = $dt->copy()->addDay($i);
+            $search_counts = Reserve::whereDate('reserve_date', $search_date)->where('store_id', $request->store_id)->count();
+            $day = $weekday[$search_date->dayOfWeek];
+            $week[$i] = [$search_date->isoFormat($format), $search_counts, $day];
+          }
+        return view('Store.storeDetail', compact('store', 'area', 'holidays','week'));
     }
     /**
      * Show the form for editing the specified resource.

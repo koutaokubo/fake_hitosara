@@ -3,6 +3,10 @@
 @section('content')
 
 <div class="container">
+  
+<br>
+<h2 id="search">店舗検索</h2>
+<br>
 <form class="container-fluid me-2" action="/home" method="get">
     <div class="form-group">
         <label for="exampleFormControlSelect1">ジャンル</label>
@@ -39,10 +43,10 @@
         <table class="table  table-stripred">
             @foreach ($Search_store as $item)
             <tr>
-            <td>{{$item->name}}</td>
+            <td><a href="{{route('store.detail', ['store_id' => $item->id, 'area_id' => $item->area_id])}}">{{$item->name}}</a></td>
             <td>
-                {{-- <input class="btn btn-outline-success" type="button" value="詳細" name="detail"> --}}
-                <a href="{{route('store.detail', ['store_id' => $item->id, 'area_id' => $item->area_id])}}">詳細</a>
+                <!-- {{-- <input class="btn btn-outline-success" type="button" value="詳細" name="detail"> --}}
+                詳細</a> -->
             </td>
             <td>
               {{-- <input class="btn btn-outline-success" type="button" value="予約" name="reserve"> --}}

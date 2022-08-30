@@ -3,6 +3,9 @@
 @section('content')
 <div class = "container">
 @can('system-only')
+<br>
+<h2>ご意見・お問い合わせ一覧</h2>
+<br>
 
     @if ($contacts->count() > 0)
     <table>

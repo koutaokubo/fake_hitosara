@@ -3,6 +3,9 @@
 @section('content')
 
 <div class = "container">
+<br>
+<h2>ご意見・お問い合わせフォーム</h2>
+<br>
 
 <form method="post" action="/contacts" name="action" value="confirm">
     <div class="form-group mb-3">

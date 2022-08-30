@@ -43,7 +43,7 @@
                 <td>{{ $store->close_time }}</td>
                 <td>{{ $store->reserve_limit }}</td>
                 <td>
-                <form action="menu/create" method="GET">
+                <form action="menu/create/{{$store->id}}" method="GET">
                     <div>
                         <input type="submit" value="メニュー登録">
                     </div>

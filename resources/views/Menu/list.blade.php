@@ -4,7 +4,7 @@
 
 <div class = "container">
 <br>
-<h2>登録店舗一覧</h2>
+<h2>登録メニュー</h2>
 <br>
 
 @if ($menus != null)
@@ -16,27 +16,23 @@
             <th>編集</th>
             <th>削除</th>
         </tr>
-        {{-- @foreach ディレクティブで、1件ずつ処理 --}}
         @foreach ($menus as $menu)
-            <tr>
+        <tr>
                 <td>{{ $menu->name }}</td>
                 <td>{{ $menu->charge }}</td>
                 <td>{{ $menu->course_time }}</td>
                 <td>
-                    {{-- 各お問い合わせデータごとに、削除ボタンを追加 --}}
-                    {{-- 「削除」というデータの内容変更を伴う操作なので、form からPOST メソッドを使う --}}
-                    {{-- action先URLにIDを含めて、削除するデータを特定できるようにしておく --}}
                     <form action="/menu/edit/{{ $menu->id }}" method="get">
                         <input type="submit"  name="edit" value="編集">
                         @csrf
+                    </form>
                 </td>
                 <td>
-                    {{-- 各お問い合わせデータごとに、削除ボタンを追加 --}}
-                    {{-- 「削除」というデータの内容変更を伴う操作なので、form からPOST メソッドを使う --}}
-                    {{-- action先URLにIDを含めて、削除するデータを特定できるようにしておく --}}
-                    <form action="/menu/delete/{{ $menu->id }}" method="post">
+                    <form action="/menu/delete/" method="post">
+                        <input type="hidden"  name="id" value="{{ $menu->id }}">
                         <input type="submit"  name="delete" value="削除">
                         @csrf
+                    </form>
                 </td>
             </tr>
         @endforeach

@@ -7,7 +7,6 @@
 <h2>{{$store->name}}</h2>
 <br>
 
-    <p>{{$store->name}}</p>
     <p>{{$store->address_code}}</p>
     <p>{{$area->area_name}}{{$store->city}}{{$store->address}}</p>
     <p>

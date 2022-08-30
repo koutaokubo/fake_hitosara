@@ -3,9 +3,12 @@
 @section('content')
 
 <div class = "container">
+<br>
+<h2>ご意見・お問い合わせフォーム</h2>
+<br>
     @if(isset($contacts))
     <div mb-3>
-        <h3>ご意見・質問ありがとうございました。</h3>
+        <h3>ご意見・お問い合わせ、ありがとうございました</h3>
         <p>以下の内容で送信されました。</p>
     </div>
     <div m-3>

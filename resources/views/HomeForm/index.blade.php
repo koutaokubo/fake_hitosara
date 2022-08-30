@@ -23,7 +23,7 @@
         </select>
       </div>
       <div>
-        <table>
+        <table >
             <td>
                 {{-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"> --}}
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name=search value="{{ $search }}">
@@ -35,9 +35,10 @@
         </table>
         @if ($Search_store)
         <p>検索結果</p>
-        @foreach ($Search_store as $item)
-        <table>
-          <tr>
+
+        <table class="table  table-striped">
+            @foreach ($Search_store as $item)
+            <tr>
             <td>{{$item->genre_id}}</td>
             <td>
                 {{-- <input class="btn btn-outline-success" type="button" value="詳細" name="detail"> --}}
@@ -47,9 +48,10 @@
               {{-- <input class="btn btn-outline-success" type="button" value="予約" name="reserve"> --}}
               <a href="{{route('reserve.create', ['store_id' => $item->id])}}">予約</a>
             </td>
-          </tr>
+            </tr>
+          @endforeach
         </table>
-        @endforeach
+
         @endif
       </div>
     @csrf

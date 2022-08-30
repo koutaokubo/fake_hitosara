@@ -1,32 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
+@extends('.layout')
 
-<body>
-<p>登録内容確認</p>
-<ul>
-<li>
-<p>コース名：{{$request->name}}</p>
-<p>料金:{{$request->charge}}</p>
-<p>時間:{{$request->course_time}}</p>
-<p>店名:{{$stores->name}}</p>
+@section('content')
 
-</li>
-</ul>
+<div class = "container">
+<br>
+<h2>登録内容確認</h2>
+<br>
+
+<div class="mb-3 row">
+        <label>コース名：</label>
+        <div class="col-sm-10">
+        {{$request->name}}
+        </div>
+</div>
+
+<div class="mb-3 row">
+        <label>料金:</label>
+        <div class="col-sm-10">
+        {{$request->charge}}
+        </div>
+</div>
+
+<div class="mb-3 row">
+        <label>時間:</label>
+        <div class="col-sm-10">
+        {{$request->course_time}}
+        </div>
+</div>
+
+<div class="mb-3 row">
+        <label>店名:</label>
+        <div class="col-sm-10">
+        {{$stores->name}}
+        </div>
+</div>
+
 <form action="/menu" method="POST">
 
     <input type="hidden" name="name" value="{{$request->name}}">
     <input type="hidden" name="charge" value="{{$request->charge}}">
     <input type="hidden" name="course_time" value="{{$request->course_time}}">
     <input type="hidden" name="store_id" value="{{$request->store_id}}">
-    <div>
+    <div class="text-center">
 
-        <button class="btn btn-primary" type="submit" name="back">
+        <button class="btn btn-outline-primary btn-lg" type="submit" name="back">
             <i class="fa-solid fa-caret-left"></i>
             戻る
         </button>
@@ -37,5 +54,5 @@
     </div>
     @csrf
 </form>
-</body>
-</html>
+</div>
+@endsection

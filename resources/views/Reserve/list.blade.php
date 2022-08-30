@@ -1,4 +1,11 @@
+@extends('.layout')
+
+@section('content')
+
+<div class = "container">
+<br>
 <h2>登録店舗一覧</h2>
+<br>
 
 @if ($stores->count() > 0)
     <table border="1">
@@ -42,3 +49,6 @@
 @else
     <p>お問い合わせがありません</p>
 @endif
+
+</div>
+@endsection

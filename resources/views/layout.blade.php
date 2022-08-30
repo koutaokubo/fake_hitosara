@@ -54,7 +54,7 @@
             </a>
           </li>
         </ul>
-        <ul class="navbar-nav ">
+        <ul class="navbar-nav">
         
         @if (Auth::check())
         <li class="nav-item dropdown">
@@ -63,7 +63,7 @@
               </i>
               {{ Auth::user()->name }}さん
             </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="#">プロフィール</a>
                 <a class="dropdown-item" href="{{route('favorite')}}">お気に入り店舗</a>
                 @if (Auth::check() && Auth::user()->role !=0)

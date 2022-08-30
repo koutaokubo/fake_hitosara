@@ -46,7 +46,13 @@
                     </form>
                 </td>
                 <td>
-
+                    <form action="store/{{ $store->id }}/createMenu" method="GET">
+                        <div>
+                            <input type="submit" value="メニュー登録">
+                        </div>
+                    </form>
+                </td>
+                    <td>
                     <form action="/store/{{ $store->id }}" method="post"  >
                         <input type="submit"  name="delete" value="削除">
                         <input type="hidden" name="_method" value="DELETE">
@@ -66,5 +72,6 @@
         <input type="submit" value="作成">
     </div>
 </form>
+
 </body>
 </html>

@@ -29,7 +29,7 @@
 
 
     </div>
-    
+
     <div class="form-group">
         <label for="exampleFormControlSelect1">ジャンル</label>
         <select class="form-control" id="exampleFormControlSelect1" name="genre_id">
@@ -38,7 +38,7 @@
 
           <option  value="{{$foods->id}}"
             @if ($foods->id == old('genre_id', $edit->genre_id) )
-            selected 
+            selected
             @endif
             >{{ $foods->food_genre }}</option>
           @endforeach
@@ -57,7 +57,7 @@
 
           <option value="{{$city->id}}"
             @if ($city->id == old('area_id', $edit->area_id) )
-            selected 
+            selected
             @endif
             >
             >{{ $city->area_name }}</option>
@@ -79,6 +79,10 @@
     <div>
         <label for="name">予約締切時間</label>
         <input type="time" name="reserve_limit" id="reserve_limit" value="{{old('reserve_limit', $edit->reserve_limit)}}">
+    </div>
+    <div>
+        <label for="close_time">営業終了時間</label>
+        <input type="time" name="close_time" id="close_time" value="{{old('close_time', $edit->close_time)}}">
     </div>
     <div>
         <input type="submit" value="送信">

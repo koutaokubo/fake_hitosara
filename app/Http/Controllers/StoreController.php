@@ -16,10 +16,11 @@ class StoreController extends Controller
 {
     public function index(Request $request)
     {
+        $user_id = Auth::id();
         $stores = Store::all();
         $genre = Genre::find($request->genre_id);
         $area = Area::find($request->area_id);
-        return view('Store.index', compact('stores','genre', 'area','request'));
+        return view('Store.index', compact('stores','genre', 'area','request','user_id'));
     }
     /**
      * Show the form for creating a new resource.

@@ -40,7 +40,14 @@
                 <td>{{ $store->open_time }}</td>
                 <td>{{ $store->close_time }}</td>
                 <td>{{ $store->reserve_limit }}</td>
-
+                @if($store->id==$user_id)
+                <td>
+                <form action="menu/create" method="GET">
+                    <div>
+                        <input type="submit" value="メニュー登録">
+                    </div>
+                </form>
+            </td>
                 <td>
 
                     <form action="/store/{{ $store->id }}/edit" method="get">
@@ -57,6 +64,7 @@
                         @csrf
                     </form>
                 </td>
+                 @endif
             </tr>
         @endforeach
     </table>
@@ -69,11 +77,7 @@
         <input type="submit" value="追加">
     </div>
 </form>
-<form action="menu/create" method="GET">
-    <div>
-        <input type="submit" value="メニュー登録">
-    </div>
-</form>
+
 
 @else
     <p>店舗登録がありません</p>

@@ -36,7 +36,7 @@
         @if ($Search_store)
         <p>検索結果</p>
 
-        <table class="table  table-striped">
+        <table class="table  table-stripred">
             @foreach ($Search_store as $item)
             <tr>
             <td>{{$item->genre_id}}</td>

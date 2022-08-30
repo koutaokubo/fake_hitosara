@@ -6,6 +6,8 @@ use App\Http\Controllers\ReserveController;
 use App\Http\Controllers\HomeFormController;
 use App\Http\Controllers\ContactFormController;
 use App\Http\Controllers\FavoriteController;
+use App\Http\Controllers\MenuController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -56,12 +58,21 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+Route::get('/menu/create', [MenuController ::class ,'create']);
+Route::post('/menu/confirm', [MenuController ::class ,'confirm']);
+Route::post('/menu', [MenuController ::class ,'store']);
 
 Route::post('/store/confirm', [StoreController ::class ,'confirm']);
 
 Route::get('/store/detail/', [StoreController::class, 'storeDetail'])->name('store.detail');
 
-Route::resource('/store', StoreController::class);
+Route::resource('/store', StoreController::class)
+    ->names(['index' => 'Store.index',
+]);
+
+
+
+
 
 Route::resource('/reserve', ReserveController::class)
     ->names(['index' => 'reserve.index',

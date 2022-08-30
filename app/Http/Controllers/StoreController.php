@@ -119,7 +119,8 @@ class StoreController extends Controller
         $area = Area::find($request->area_id);
         $holiday = Holiday::where('store_id', '=', $request->store_id)->first();
         $holidays = $holiday->getHolidays();
-        return view('Store.storeDetail', compact('store', 'area', 'holidays'));
+        $isFavorited = DB::table('favorite')->where('user_id', $request->user_id)->where('store_id', $request->store_id)->exists();
+        return view('Store.storeDetail', compact('store', 'area', 'holidays', 'isFavorited'));
     }
     /**
      * Show the form for editing the specified resource.

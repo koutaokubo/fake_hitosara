@@ -17,7 +17,19 @@
                 {{$key}}
             @endif
         @endforeach
-    </p>
+    @if (@Auth::check())
+        <form action="{{route('togglefavorite')}}" method="post">
+            @csrf
+            <input type="hidden" name="store_id" value="{{$store->id}}">
+            <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+            @if($isFavorited == false)
+                <input type="submit" value="お気に入り登録">
+            @else
+                <input type="submit" value="お気に入り解除">
+            @endif
+            
+        </form>
+    @endif
     <form action="{{ route('reserve.create') }}">
         <div>
             <input type="hidden" name="store_id" value="{{$store->id}}">

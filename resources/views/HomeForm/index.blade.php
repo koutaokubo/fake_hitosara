@@ -41,7 +41,7 @@
             <td>{{$item->genre_id}}</td>
             <td>
                 {{-- <input class="btn btn-outline-success" type="button" value="詳細" name="detail"> --}}
-                <a href="{{route('store.detail', ['store_id' => $item->id, 'area_id' => $item->area_id])}}">詳細</a>
+                <a href="{{route('store.detail', ['store_id' => $item->id, 'area_id' => $item->area_id, 'user_id' => Auth::user()->id])}}">詳細</a>
             </td>
             <td>
               {{-- <input class="btn btn-outline-success" type="button" value="予約" name="reserve"> --}}

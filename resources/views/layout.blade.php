@@ -67,16 +67,21 @@
                 <a class="dropdown-item" href="#">プロフィール</a>
                 <a class="dropdown-item" href="{{route('favorite')}}">お気に入り店舗</a>
                 @if (Auth::check() && Auth::user()->role !=0)
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" href="/store">
                     店舗情報登録</a>
                 @endif
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">ログアウト</a>
+              <a class="dropdown-item" href="/logout">ログアウト</a>
             </div>
           </li>
         @else
+        <li class="nav-item">
+            <a class="nav-link" href="/register">
+                新規登録
+            </a>
+            </li>
             <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="/login">
                 ログイン
             </a>
             </li>

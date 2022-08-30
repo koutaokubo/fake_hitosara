@@ -6,23 +6,25 @@
     @if(isset($contacts))
     <div mb-3>
         <h3>ご意見・質問ありがとうございました。</h3>
-        <a>以下の内容で送信されました。</a>
+        <p>以下の内容で送信されました。</p>
     </div>
     <div m-3>
-        <table>
         @foreach ($contacts as $contact)
-        <tr><td>お問い合わせの種類</td>
-            <td>
-            {{-- @foreach ($article->categories as $category)
-            {{ $category->name }}
-            @endforeach --}}
+        <div class="row">
+        <label>お問い合わせの種類：</label>
+            <div class="col-sm-10">
             @foreach ($categories as $item)
-                {{$item->name}}
+            {{$item->name}}
             @endforeach
-        </td></tr>
-        <tr><td>ご意見・お問い合わせ内容</td>
-            <td>{{ $contact->text }}</td></tr>
-        </table>
+            </div>
+        </div>
+
+        <div class="row">
+        <label>ご意見・お問い合わせ内容</label>
+            <div class="col-sm-10 border">
+            {{ $contact->text }}
+            </div>
+        </div>
         @endforeach
     </div>
     @else

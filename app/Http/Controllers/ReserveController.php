@@ -42,7 +42,7 @@ class ReserveController extends Controller
             $store = Store::find($reserve->store_id);
             $stores[] = $store;
         }
-        return view('Reserve.index',compact('reserves', 'user', 'stores'));
+        return view('Reserve.index',compact('reserves', 'stores'));
     }
 
     public function getFavoriteUsers(Request $request) {

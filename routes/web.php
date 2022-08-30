@@ -6,7 +6,9 @@ use App\Http\Controllers\ReserveController;
 use App\Http\Controllers\HomeFormController;
 use App\Http\Controllers\ContactFormController;
 use App\Http\Controllers\FavoriteController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MenuController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -37,6 +39,8 @@ Route::group(['middleware' => ['auth', 'can:admin-higher']], function () {
 
 });
 
+//ログアウト
+Route::get('/logout',[LoginController::class, "logout"]);
 
 
 Route::resource('contacts', ContactFormController::class)

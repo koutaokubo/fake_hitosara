@@ -1,14 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
+@extends('.layout')
+
+@section('content')
+
+<div class = "container">
+  <br>
+  <h2>新規店舗作成</h2>
+  <br>
     @if ($errors->any())
-    <div class="alert alert-danger mt-3">
+    <div class="alert alert-danger mt-">
         <ul>
             @foreach ($errors->all() as $error)
                 <li>{{ $error }}</li>
@@ -19,14 +18,15 @@
     <form method="post" action="/store/confirm" name="action" value="confirm">
         @csrf
         <div>
-             名前<input id="name" class="block mt-1 w-full" type="text" name="name" value="{{old('name')}}"/>
+          <label for="name" class="form-label">名前
+            <input id="name" class="form-control" type="text" name="name" value="{{old('name')}}"/>
+          </label>
         </div>
-        <div>
-           郵便番号 <input id="address_code" class="block mt-1 w-full" type="text" name="address_code" value="{{old('address_code')}}"/>
-       </div>
-       <div class="form-group">
-        <label for="exampleFormControlSelect1">ジャンル</label>
+
+       <div class="form-group mt-2">
+        <label for="exampleFormControlSelect1">ジャンル
         <select class="form-control" id="exampleFormControlSelect1" name="genre_id">
+        </label>
             <option >-</option>
             @foreach ($genres as $foods)
 
@@ -34,9 +34,17 @@
           @endforeach
         </select>
       </div>
-      <div class="form-group">
-        <label for="exampleFormControlSelect1">エリア</label>
+
+      <div>
+          <label for="address_code" class="mt-2 form-label">郵便番号
+          <input id="address_code" class="form-control" type="text" name="address_code" value="{{old('address_code')}}"/>
+          </label>
+       </div>
+       
+      <div class="form-group mt-2">
+        <label for="exampleFormControlSelect1">エリア
         <select class="form-control" id="exampleFormControlSelect1" name="area_id" value="{{old('area_id')}}">
+        </label>
             <option >-</option>
             @foreach ($area as $city)
 
@@ -50,19 +58,26 @@
         </select>
       </div>
       <div>
-        市区町村<input id="address" class="block mt-1 w-full" type="text" name="address" value="{{old('address')}}"/>
+      <label for="address" class="mt-2 form-label">市区町村</label>
+        <input id="address" class="form-control" type="text" name="address" value="{{old('address')}}"/>
       </div>
       <div>
-        以降の住所<input id="city" class="block mt-1 w-full" type="text" name="city" value="{{old('city')}}"/>
+        <label for="city" class="mt-2 form-label">以降の住所</label>
+        <input id="city" class="form-control" type="text" name="city" value="{{old('city')}}"/>
       </div>
       <div class="mt-4">
-        営業開始時間 <input id="open_time" class="block mt-1 w-full" type="time" name="open_time" value="{{old('open_time')}}"/>
+      <label for="open_time" class="form-label">
+        営業開始時間 <input id="open_time" class="form-control"  type="time" name="open_time" value="{{old('open_time')}}"/>
+      </label>
       </div>
       <div class="mt-4">
-        営業終了時間 <input id="close_time" class="block mt-1 w-full" type="time" name="close_time" value="{{old('close_time')}}"/>
+      <label for="close_time" class="form-label">
+        営業終了時間 <input id="close_time" class="form-control" type="time" name="close_time" value="{{old('close_time')}}"/>
+      </label>
       </div>
 
       <div container>
+        <label class="mt-2">営業日</label>
         <table class="table table-borderd">
           <tr>
               <th>月曜日</th>
@@ -118,7 +133,7 @@
                 <label for="flag_sat_close">休み</label>
               </td>
           </tr>
-          <tr>""
+          <tr>
               <th>日曜日</th>
               <td>
                 <input type="radio" name="sunday" value="1" id="flag_sun_open" />
@@ -131,11 +146,14 @@
       </div>
 
       <div>
-        最大予約席数 <input id="reserve_limit" class="block mt-1 w-full" type="text" name="reserve_limit" value="{{old('reserve_limit')}}"/>
+      <label for="reserve_limit" class="mt-2 form-label">最大予約席数
+         <input id="reserve_limit" class="form-control" type="text" name="reserve_limit" value="{{old('reserve_limit')}}"/>
+         </label>
       </div>
-      <div>
-        <input type="submit" value="送信"/>
+      <div class="text-center">
+        <input type="submit" class="btn btn-outline-primary btn-lg" value="次へ">
       </div>
     </form>
-</body>
-</html>
+
+    </div>
+@endsection

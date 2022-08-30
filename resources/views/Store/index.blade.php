@@ -1,31 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
+@extends('.layout')
+
+@section('content')
+
+<div class = "container">
+@if ($stores != null)
+
     {{-- @foreach ($stores as $store)
         <p>{{$store->id}}</p>
     @endforeach --}}
 
+<br>
 <h2>登録店舗一覧</h2>
-
+<br>
 @if ($stores->count() > 0)
-    <table border="1">
+<table class="table">
+    <thead>
         <tr>
-            <th>お名前</th>
-            <th>ジャンル</th>
-            <th>郵便番号</th>
-            <th>都道府県</th>
-            <th>住所</th>
-            <th>営業開始時間</th>
-            <th>営業終了時間</th>
-            <th>予約締切時間</th>
+            <th scope="col">お名前</th>
+            <th scope="col">ジャンル</th>
+            <th scope="col">郵便番号</th>
+            <th scope="col">都道府県</th>
+            <th scope="col">住所</th>
+            <th scope="col">営業開始時間</th>
+            <th scope="col">営業終了時間</th>
+            <th scope="col">予約締切時間</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
         </tr>
-
+    </thread>
 
         @foreach ($stores as $store)
             <tr>
@@ -64,7 +66,7 @@
 
 <form action="store/create" method="GET">
     <div>
-        <input type="submit" value="作成">
+        <input type="submit" value="追加">
     </div>
 </form>
 <form action="menu/create" method="GET">
@@ -72,5 +74,10 @@
         <input type="submit" value="メニュー登録">
     </div>
 </form>
-</body>
-</html>
+
+@else
+    <p>店舗登録がありません</p>
+ @endif
+</div>
+</div>
+@endsection

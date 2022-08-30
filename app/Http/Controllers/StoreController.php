@@ -49,8 +49,17 @@ class StoreController extends Controller
         $genre = Genre::find($request->genre_id);
         $area = Area::find($request->area_id);
         $user_id = Auth::id();
-
-        return view('Store.confirm',compact('genre', 'area','request', 'user_id'));
+        $dates = [
+            ["日曜日", $request->sunday], ["月曜日", $request->monday], ["火曜日", $request->tuesday], ["水曜日", $request->wednesday], ["木曜日", $request->thursday], ["金曜日", $request->friday], ["土曜日", $request->saturday]
+        ];
+        foreach($dates as $date){
+            if($date[1] == 1){
+                $open[] = [$date[0], '営業日'];
+            }elseif($date[1] == 2){
+                $open[] = [$date[0], '定休日'];
+            }
+        }
+        return view('Store.confirm',compact('genre', 'area','request', 'user_id', 'open'));
     }
 
 

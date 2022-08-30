@@ -1,24 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
+@extends('.layout')
+
+@section('content')
+
+<div class = "container">
+<br>
+<h2>コースメニュー作成</h2>
+<br>
     <form method="post" action="/menu/confirm" name="action" >
         @csrf
         <div>
-             コース名:<input id="name" class="block mt-1 w-full" type="text" name="name" value="{{old('name')}}"/>
+          <label for="name" class="form-label">コース名
+            <input id="name" class="form-control" type="text" name="name" value="{{old('name')}}"/>
+          </label>
         </div>
+
         <div>
-           料金:<input id="charge" class="block mt-1 w-full" type="text" name="charge" value="{{old('charge')}}"/>
-       </div>
-       <div>
-        時間:<input id="course_time" class="block mt-1 w-full" type="time" name="course_time" value="{{old('course_time')}}"/>
-      </div>
-      <div class="form-group">店名:
+          <label for="charge" class="form-label">料金
+            <input id="charge" class="form-control" type="text" name="charge" value="{{old('charge')}}"/>
+          </label>
+        </div>
+
+        <div>
+          <label for="course_time" class="form-label">時間
+            <input id="course_time" class="form-control" type="time" name="course_time" value="{{old('course_time')}}"/>
+          </label>
+        </div>
+        
+      <div class="w-25 form-group">店名
         <label for="exampleFormControlSelect1"></label>
         <select class="form-control" id="exampleFormControlSelect1" name="store_id">
             <option >-</option>
@@ -28,12 +36,11 @@
           @endforeach
         </select>
       </div>
-      <div>
 
-        <input type="submit" value="送信"/>
-
+      <div class="text-center">
+        <input type="submit" class="btn btn-primary btn-lg" value="送信">
       </div>
 
     </form>
-</body>
-</html>
+</div>
+@endsection

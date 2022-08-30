@@ -20,7 +20,7 @@
     @else
     <p>お問い合わせがありません</p>
     @endif
-@elsecan('user-higher')
+@else
     <div mb-3>
             <h3>ページの期限が切れています。</h3>
     </div>

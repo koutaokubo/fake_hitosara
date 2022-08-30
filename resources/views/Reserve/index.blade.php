@@ -3,9 +3,9 @@
 @section('content')
 
 <div class = "container">
+<div class="text-center">
 @if ($stores != null)
 @if (Auth::check())
-<div>
     @foreach ($reserves as $reserve)
         <p>{{$reserve->id}} {{ Auth::user()->name }}</p>
     @endforeach
@@ -14,7 +14,11 @@
     @endforeach
 @endif
 @else
+<br>
     <p>予約はありません</p>
+<br>
+<a href="/home" class="btn btn-primary" role="button" data-bs-toggle="button">予約する</a>
+
  @endif
 </div>
 </div>

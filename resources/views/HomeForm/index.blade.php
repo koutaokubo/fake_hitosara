@@ -30,7 +30,7 @@
             </td>
             <td>
                 {{-- <button class="btn btn-outline-success" type="submit">Search</button> --}}
-                <button class="btn btn-outline-success" type="submit">Search</button>
+                <button class="btn btn-outline-primary" type="submit">Search</button>
             </td>
         </table>
         @if ($Search_store)
@@ -39,7 +39,7 @@
         <table class="table  table-striped">
             @foreach ($Search_store as $item)
             <tr>
-            <td>{{$item->genre_id}}</td>
+            <td>{{$item->name}}</td>
             <td>
                 {{-- <input class="btn btn-outline-success" type="button" value="詳細" name="detail"> --}}
                 <a href="{{route('store.detail', ['store_id' => $item->id, 'area_id' => $item->area_id])}}">詳細</a>

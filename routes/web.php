@@ -64,6 +64,7 @@ Route::middleware([
 });
 Route::get('/menu/create', [MenuController ::class ,'create']);
 Route::post('/menu/confirm', [MenuController ::class ,'confirm']);
+Route::get('/menu/list/{id}', [MenuController ::class ,'list']);
 Route::post('/menu', [MenuController ::class ,'store']);
 
 Route::post('/store/confirm', [StoreController ::class ,'confirm']);

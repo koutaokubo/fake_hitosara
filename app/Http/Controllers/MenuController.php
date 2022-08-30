@@ -16,6 +16,7 @@ class MenuController extends Controller
 
         return view('Menu.create',compact('stores'));
     }
+
     public function confirm(Request $request)
     {
 
@@ -24,6 +25,7 @@ class MenuController extends Controller
 
         return view('Menu.confirm',compact('request','stores'));
     }
+
     public function store(Request $request)
     {
         if ($request->has('back')){
@@ -39,8 +41,16 @@ class MenuController extends Controller
 
 
         return redirect(route('Store.index'));
+        }
 
 
     }
-}
+    //メニュー一覧
+    public function list($id)
+    {
+        //各店舗のメニュー一覧
+        $menus = Menu::where('store_id', $id);
+        return view('Menu.list',compact('menus'));
+
+    }
 }

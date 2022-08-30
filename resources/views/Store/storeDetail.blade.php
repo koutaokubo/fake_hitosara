@@ -21,7 +21,7 @@
     <form action="{{ route('reserve.create') }}">
         <div>
             <input type="hidden" name="store_id" value="{{$store->id}}">
-            <input type="submit" value="作成">
+            <input type="submit" value="予約作成">
         </div>
     </form>
 </body>

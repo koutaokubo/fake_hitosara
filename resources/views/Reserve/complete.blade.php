@@ -4,8 +4,9 @@
 
 <div class = "container">
 <br>
-<h2>登録完了</h2>
+<h2>予約完了</h2>
 <br>
+<p>ご来店お待ちしております</p>
 
 </div>
 @endsection

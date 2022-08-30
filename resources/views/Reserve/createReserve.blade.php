@@ -24,7 +24,7 @@
         </div>
 <br>
         <div class="text-center">
-            <input type="submit" class="btn-primary" value="送信">
+            <input type="submit" class="btn btn-primary btn-lg" value="送信">
         </div>
         <div>
           <input type="hidden" name="user_id" value="{{$user->id}}">

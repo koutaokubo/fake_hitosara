@@ -17,6 +17,34 @@
             @endif
         @endforeach
     </p>
+    <table class = "table">
+    <tr>
+    @foreach($week as $key=>$vals)
+            <th>{{$vals[0]}}</th>
+    @endforeach
+    </tr>
+    <tr>
+    @foreach($week as $key=>$vals)
+        @foreach ($holidays as $days => $holiday)
+            @if($days === $vals[2])
+            <td>
+                @if ($holiday == 2)
+                    定休日
+                @elseif($vals[1]*2 < $store->reserve_limit)
+                    〇
+                @elseif($vals[1] < $store->reserve_limit)
+                    △
+                @elseif($vals[1] == $store->reserve_limit)
+                    ×
+                @else
+                    未定
+                @endif
+            </td>
+            @endif
+        @endforeach
+    @endforeach
+    </tr>
+    </table>
     <form action="{{ route('reserve.create') }}">
         <div class="text-center">
             <input type="hidden" name="store_id" value="{{$store->id}}">

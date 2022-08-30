@@ -2,11 +2,11 @@
 
 @section('content')
 
+<div class="container">
+  
 <br>
 <h2 id="search">店舗検索</h2>
 <br>
-
-<div class="container">
 <form class="container-fluid me-2" action="/home" method="get">
     <div class="form-group">
         <label for="exampleFormControlSelect1">ジャンル</label>

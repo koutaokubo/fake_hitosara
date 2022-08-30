@@ -40,6 +40,7 @@
                 <td>{{ $store->open_time }}</td>
                 <td>{{ $store->close_time }}</td>
                 <td>{{ $store->reserve_limit }}</td>
+
                 <td>
 
                     <form action="/store/{{ $store->id }}/edit" method="get">
@@ -66,6 +67,11 @@
 <form action="store/create" method="GET">
     <div>
         <input type="submit" value="追加">
+    </div>
+</form>
+<form action="menu/create" method="GET">
+    <div>
+        <input type="submit" value="メニュー登録">
     </div>
 </form>
 

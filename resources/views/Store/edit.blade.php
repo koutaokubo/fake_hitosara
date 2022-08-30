@@ -21,6 +21,7 @@
 <form action="/store/{{$store->id}}" method="POST">
     <input type="hidden" name="_method" value="PUT">
     <div>
+
     <label for="name" class="form-label">名前
         <input type="text" class="form-control" name="name" id="name" value="{{old('name', $edit->name)}}">
     </label></div>
@@ -33,7 +34,7 @@
 
           <option  value="{{$foods->id}}"
             @if ($foods->id == old('genre_id', $edit->genre_id) )
-            selected 
+            selected
             @endif
             >{{ $foods->food_genre }}</option>
           @endforeach
@@ -53,7 +54,7 @@
 
           <option value="{{$city->id}}"
             @if ($city->id == old('area_id', $edit->area_id) )
-            selected 
+            selected
             @endif
             >
             >{{ $city->area_name }}</option>
@@ -82,6 +83,7 @@
         <label for="reserve_limit"  class="form-label">
         予約締切時間<input type="time" class="form-control" name="reserve_limit" id="reserve_limit" value="{{old('reserve_limit', $edit->reserve_limit)}}">
         </label>
+
     </div>
     <div class="text-center">
         <input type="submit" class="btn btn-primary btn-lg" value="更新">

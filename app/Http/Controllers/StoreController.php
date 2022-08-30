@@ -35,6 +35,7 @@ class StoreController extends Controller
 
         return view('Store.create',compact('stores','genres', 'area'));
     }
+
     /**
      * Store a newly created resource in storage.
      *@param  \App\Http\Requests\StoreRequest
@@ -60,6 +61,7 @@ class StoreController extends Controller
         }
         return view('Store.confirm',compact('genre', 'area','request', 'user_id', 'open'));
     }
+
 
 
     public function store(Request $request)
@@ -99,6 +101,7 @@ class StoreController extends Controller
             }
         }
     }
+
       /**
      * Display the specified resource.
      *

@@ -21,7 +21,7 @@ class Reserve extends Model
     ];
 
     public function getReserveUser() {
-        return $this->hasOne(User::class);
+        return $this->belongsTo(User::class);
     }
 
     public function getReserveStore() {

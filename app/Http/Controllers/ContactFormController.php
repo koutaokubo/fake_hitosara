@@ -19,7 +19,11 @@ class ContactFormController extends Controller
     {
         //送信完了画面
         $contacts = Contact::where('user_id', auth()->id())->orderBy('created_at','desc')->take(1)->get();
-        return view('HomeForm.send', compact('contacts'));
+        $categories = [];
+        foreach ($contacts as $key => $value) {
+            $categories[] = $value->category;
+        }
+        return view('HomeForm.send', compact('contacts', 'categories'));
     }
 
     /**
@@ -84,13 +88,15 @@ class ContactFormController extends Controller
      */
     public function edit($id)
     {
+        $category;
         //管理者が店舗用に変更するためのページ
         if($id){
             $contacts = Contact::where('id', $id)->get();
             foreach($contacts as $contact){
             $send_user = DB::table('users')->where('id', $contact->user_id)->first();
+                $category = $contact->category;
             }
-            return view('ContactForm.edit',compact('contacts', 'send_user'));
+            return view('ContactForm.edit',compact('contacts', 'send_user', 'category'));
         }else{
             return redirect('/contacts/0');
         }

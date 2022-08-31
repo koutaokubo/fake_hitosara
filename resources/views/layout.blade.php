@@ -64,7 +64,7 @@
               {{ Auth::user()->name }}さん
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">プロフィール</a>
+                <a class="dropdown-item" href="/mypage">プロフィール</a>
                 <a class="dropdown-item" href="{{route('favorite')}}">お気に入り店舗</a>
                 @if (Auth::check() && Auth::user()->role !=0)
                 <a class="dropdown-item" href="/store">

@@ -8,7 +8,8 @@ use App\Http\Controllers\ContactFormController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MenuController;
-
+use App\Http\Controllers\MypageController;
+use App\Http\Controllers\ChangePasswordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -79,7 +80,10 @@ Route::resource('/store', StoreController::class)
     ->names(['index' => 'Store.index',
 ]);
 
+Route::get('mypage/delete',[MypageController::class, 'delete']);
 
+Route::resource('/mypage', MypageController::class)
+->except(['create', 'store', 'show']);
 
 
 

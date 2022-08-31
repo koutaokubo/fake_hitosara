@@ -24,7 +24,14 @@
         @if($article->done==True)
         <td>対応済</td>
         @elseif ($article->done==False)
-        <td class="text-success">未対応</td>
+        <td class="text-success">
+        <form method="post" action="/contacts/{{$article->id}}">
+          <input type="hidden" name="_method" value="PUT">
+          <input type="hidden" name = "send_article_id" value = "{{$article->user_id}}">
+          <input type="submit" class="btn btn-primary" value="未対応">
+          @csrf
+        </form>
+        </td>
         @endif
       </tr>
       <tr>

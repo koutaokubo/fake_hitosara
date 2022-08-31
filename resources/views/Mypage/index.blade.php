@@ -19,9 +19,9 @@
             @if(Auth::user()->role ==0)
                 一般
             @elseif (Auth::user()->role ==1)
-                店舗管理者
+            開発者
             @else
-                開発者
+            店舗管理者
             @endif
         </td>
     </tr>

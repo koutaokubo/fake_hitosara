@@ -69,6 +69,10 @@
                 @if (Auth::check() && Auth::user()->role !=0)
                 <a class="dropdown-item" href="/store">
                     店舗情報登録</a>
+                    @if(Auth::user()->role == 1)
+                    <a class="dropdown-item" href="/contacts/0">
+                    問い合わせ一覧</a>
+                    @endif
                 @endif
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="/logout">ログアウト</a>

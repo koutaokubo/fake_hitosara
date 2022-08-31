@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class MypageController extends Controller
 {
@@ -76,7 +77,7 @@ class MypageController extends Controller
         ]);
         $user = Auth::user();
         // 現在のパスワードを確認
-        if (!password_verify($request->password, $user->password) && !password_verify($request->new_password, $request->confirm_password)) {
+        if (Hash::check($request->password, $user->password) && !password_verify($request->new_password, $request->confirm_password)) {
             return redirect('/mypage/0/edit')
             ->with('warning', 'パスワードが一致しません');
         }else{

@@ -122,8 +122,6 @@ class StoreController extends Controller
         $area = Area::find($request->area_id);
         $holiday = Holiday::where('store_id', '=', $request->store_id)->first();
         $holidays = $holiday->getHolidays();
-
-        //データベースから、今日から7日に予約されたデータをを取り出す
         $dt = Carbon::today();
         $format = 'MM/DD (ddd)';
         $weekday = ['日曜日', '月曜日', '火曜日', '水曜日', '木曜日', '金曜日', '土曜日'];
@@ -133,7 +131,17 @@ class StoreController extends Controller
             $day = $weekday[$search_date->dayOfWeek];
             $week[$i] = [$search_date->isoFormat($format), $search_counts, $day];
           }
-        return view('Store.storeDetail', compact('store', 'area', 'holidays','week'));
+        try {
+            $user_id = Auth::id();
+        } catch (e) {
+            $user_id = null;
+        }
+        if($user_id == null) {
+            $isFavorited = false;
+        } else {
+            $isFavorited = DB::table('favorite')->where('user_id', $user_id)->where('store_id', $request->store_id)->exists();
+        }
+        return view('Store.storeDetail', compact('store', 'area', 'holidays', 'isFavorited', 'week'));
     }
     /**
      * Show the form for editing the specified resource.

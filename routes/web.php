@@ -95,3 +95,5 @@ Route::resource('/reserve', ReserveController::class)
 Route::post('/reserve/confirm', [ReserveController::class, 'reserveConfirm'])->name('reserve.confirm');
 
 Route::get('/favorite', [FavoriteController::class, 'getFavoriteStores'])->name('favorite');
+
+Route::post('/favorite', [FavoriteController::class, 'toggleFavorite'])->name('togglefavorite');

@@ -85,18 +85,24 @@ class ReserveController extends Controller
     }
 
     public function reserveConfirm(Request $request) {
+        // dd($request);
         $dateTime = new Datetime($request->date.$request->time);
-        $today = new Datetime();
-        if ($dateTime < $today) {
-            $flashMessage = '過去の予約はできません';
-            return redirect(route('reserve.create'))->with($flashMessage);
+        $todate = new Datetime();
+        $user = User::find($request->user_id);
+        $store = Store::find($request->store_id);
+        $store_id = $request->store_id;
+        $menus = $store->getMenuList;
+        if ($dateTime < $todate) {
+            $today = date('Y-m-d');
+            // return redirect(route('reserve.create'))->with($flashMessage, $store_id);
+            return view('Reserve.createReserve', compact('store_id', 'today', 'store', 'menus', 'user'));
         }
         $numberOfDay = $dateTime->format('w');
         $user = User::find($request->user_id);
         $store = Store::find($request->store_id);
         if ($request->time < $store->open_time || $request->time > $store->close_time) {
-            $flashMessage = '営業時間外です';
-            return redirect(route('reserve.create'))->with($flashMessage);
+            $today = date('Y-m-d');
+            return view('Reserve.createReserve', compact('store_id', 'today', 'store', 'menus', 'user'));
         }
         $holiday = Holiday::where('store_id', '=', $request->store_id)->first();
         $holidays = $holiday->getHolidays();

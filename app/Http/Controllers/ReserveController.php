@@ -122,7 +122,7 @@ class ReserveController extends Controller
             $request->session()->regenerateToken();
             return view('Reserve/finish', compact('numberOfSeats'));
         } else {
-            echo('sorry');
+            echo ('sorry');
         }
     }
 

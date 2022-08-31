@@ -55,6 +55,9 @@ class ContactFormController extends Controller
         $contact->user_id = auth()->id();
         $contact->category_id = $request->category_id;
         $contact->text = $request->text;
+        if(Auth::user()->role != 0 && $request->category_id == 2){
+            $contact->done = True;
+        }
         $contact->save();
         //完了画面
         return redirect('/contacts');
@@ -113,7 +116,7 @@ class ContactFormController extends Controller
     public function update(Request $request, $id)
     {
         //編集の更新の保存
-        if( $request->shop == 0){
+        if( $request->has('send_user_id') && $request->shop == 0){
             //店舗管理者承認
             $article = Contact::where('id', $id)->first();
             $article->done = True;
@@ -121,16 +124,17 @@ class ContactFormController extends Controller
             DB::table('users')
                 ->where('id',  $request->send_user_id)
                 ->update(['role' => 3]);
-  
         }
-        elseif( $request->message ){
-            //お問い合わせに返信
-            
+        elseif( $request->has('send_article_id') ){
+            //対応済に変更
+            $article = Contact::find($id);
+            $article->done = True;
+            $article->save();
         }
         else{
             // return redirect(route('posts.index'))->with('error', '許可されていない操作です');
         }
-        // return redirect('/contacts/0');
+        return redirect('/contacts/0');
 
     }
 

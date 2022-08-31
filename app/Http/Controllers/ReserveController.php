@@ -120,7 +120,7 @@ class ReserveController extends Controller
         if(($store->reserve_limit - $numberOfSeats) > 0) {
             $reserve->fill($request->all())->save();
             $request->session()->regenerateToken();
-            return view('Reserve/finish', compact('numberOfSeats'));
+            return view('Reserve/complete', compact('numberOfSeats'));
         } else {
             echo ('sorry');
         }

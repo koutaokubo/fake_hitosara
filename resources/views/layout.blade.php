@@ -55,6 +55,13 @@
               お問い合わせ
             </a>
           </li>
+          <li class="nav-item">
+              @can('admin-higher')
+              <a href="{{route('reserve.list', ['id' => Auth::user()->id])}}" class="nav-link">
+                予約一覧（オーナー向け）
+              </a>
+              @endcan
+          </li>
         </ul>
         <ul class="navbar-nav">
         

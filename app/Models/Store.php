@@ -39,7 +39,7 @@ class Store extends Model
     }
 
     public function getReserveList() {
-        return $this->belongsToMany(Reserve::class);
+        return $this->hasMany(Reserve::class);
     }
 
     public function getMenuList() {

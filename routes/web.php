@@ -36,7 +36,7 @@ Route::group(['middleware' => ['auth', 'can:system-only']], function () {
 
 // 店舗管理者以上
 Route::group(['middleware' => ['auth', 'can:admin-higher']], function () {
-
+    Route::get('/reserve/list', [ReserveController::class, 'getReserveList'])->name('reserve.list');
 });
 
 //ログアウト
@@ -45,9 +45,6 @@ Route::get('/logout',[LoginController::class, "logout"]);
 
 Route::resource('contacts', ContactFormController::class)
     ->except(['destroy']);
-
-
-
 
 Route::get('/', function () {
     return view('welcome');
@@ -78,12 +75,6 @@ Route::get('/store/detail/', [StoreController::class, 'storeDetail'])->name('sto
 Route::resource('/store', StoreController::class)
     ->names(['index' => 'Store.index',
 ]);
-
-
-
-
-
-Route::get('/reserve/list', [ReserveController::class, 'getReserveList'])->name('reserve.list');
 
 Route::resource('/reserve', ReserveController::class)
     ->names(['index' => 'reserve.index',

@@ -64,10 +64,9 @@ class ReserveController extends Controller
     }
 
     public function getReserveList(Request $request) {
-        $store = Store::find($request->id);
+        $store = Store::where('user_id', '=', $request->id)->first();
         $reserveList = $store->getReserveList;
-
-        return view('Reserve.reserveList', compact('reserveList'));
+        return view('Reserve.reserveList', compact('reserveList', 'store'));
     }
 
     /**

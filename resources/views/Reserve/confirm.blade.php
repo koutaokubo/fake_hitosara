@@ -18,10 +18,6 @@
             <td>{{$user->email}}</td>
         </tr>
         <tr>
-            <td>電話番号：</td>
-            <td>{{$user->tel}}</td>
-        </tr>
-        <tr>
             <td>店舗：</td>
             <td>{{$store->name}}</td>
         </tr>

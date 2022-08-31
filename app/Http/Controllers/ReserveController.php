@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use DateTime;
+use date;
 // use App\Http\Requests\StoreRequest;
 
 class ReserveController extends Controller
@@ -76,14 +77,20 @@ class ReserveController extends Controller
      */
     public function create(Request $request)
     {
+        $today = date('Y-m-d');
         $user = Auth::user();
         $store = Store::find($request->store_id);
         $menus = $store->getMenuList;
-        return view('Reserve.createReserve', compact('user', 'store', 'menus'));
+        return view('Reserve.createReserve', compact('user', 'store', 'menus', 'today'));
     }
 
     public function reserveConfirm(Request $request) {
         $dateTime = new Datetime($request->date.$request->time);
+        $today = new Datetime();
+        if ($dateTime < $today) {
+            $flashMessage = '過去の予約はできません';
+            return redirect(route('reserve.create'))->with($flashMessage);
+        }
         $numberOfDay = $dateTime->format('w');
         $user = User::find($request->user_id);
         $store = Store::find($request->store_id);
@@ -163,7 +170,6 @@ class ReserveController extends Controller
     {
         $reserve = Reserve::find($id);
         if(Auth::user()->id != $reserve->user_id){
-            session()->flash('msg_danger', '許可されていない操作です');
             $messageKey = 'errorMessage';
             $flashMessage = '投稿に失敗しました。';
             return redirect(route('reserve.index'))->with($messageKey, $flashMessage);

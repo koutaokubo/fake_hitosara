@@ -20,10 +20,11 @@ class FavoriteController extends Controller
         }
     }
 
-    public function getFavoriteStores() {
+    public function getFavoriteStores(Request $request) {
         $user = Auth::user();
         $favoriteStores = $user->favoriteStores;
-        return view('Store.favoriteStores', compact('favoriteStores'));
+        $isFavorited = DB::table('favorite')->where('user_id', $request->user_id)->where('store_id', $request->store_id)->exists();
+        return view('Store.favoriteStores', compact('favoriteStores', 'isFavorited'));
     }
 
     public function toggleFavorite(Request $request) {

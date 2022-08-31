@@ -80,6 +80,7 @@ Route::resource('/store', StoreController::class)
     ->names(['index' => 'Store.index',
 ]);
 
+Route::get('mypage/thanks',[MypageController::class, 'thanks']);
 Route::get('mypage/delete',[MypageController::class, 'delete']);
 
 Route::resource('/mypage', MypageController::class)

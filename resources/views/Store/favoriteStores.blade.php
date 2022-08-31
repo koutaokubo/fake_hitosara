@@ -1,14 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
+@extends('.layout')
+
+@section('content')
+
+<div class = "container">
+<br>
+<h2>お気に入り店舗</h2>
+<br>
+
+<table class="table">
     @foreach ($favoriteStores as $store)
-        {{$store->name}}
+        <tr><a href="{{route('store.detail', ['store_id' => $store->id])}}"><td>{{$store->name}}</td></tr>
     @endforeach
-</body>
-</html>
+<table>
+
+</div>
+@endsection

@@ -90,6 +90,7 @@ Route::resource('/reserve', ReserveController::class)
             'create' => 'reserve.create',
             'store' => 'reserve.store',
             'edit' => 'reserve.edit',
+            'update' => 'reserve.update',
             'destroy' => 'reserve.delete',
             ])
     ->middleware('auth');

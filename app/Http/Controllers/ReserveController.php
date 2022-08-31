@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Store;
 use App\Models\Area;
 use App\Models\Holiday;
+use App\Models\Menu;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -37,12 +38,12 @@ class ReserveController extends Controller
         // $reserves = Reserve::where('user_id', $user->id)->get();
         $reserves = $user->reserves;
         // $stores = Store::all();
-        $stores = [];
         foreach ($reserves as $key => $reserve) {
             $store = Store::find($reserve->store_id);
             $stores[] = $store;
+            $menu = Menu::find($reserve->menu_id)->first();
         }
-        return view('Reserve.index',compact('reserves', 'stores'));
+        return view('Reserve.index',compact('reserves', 'stores', 'menu'));
     }
 
     public function getFavoriteUsers(Request $request) {
@@ -145,7 +146,11 @@ class ReserveController extends Controller
      */
     public function edit(Reserve $reserve)
     {
-        return view('Reserve.edit', $reserve);
+        $store = Store::where('id', $reserve->store_id)->first();
+        $menus = Menu::where('store_id', $store->id)->get();
+        $reserve_date = $reserve->reserve_date;
+        $reserve_time = $reserve->reserve_time;
+        return view('Reserve.edit', compact('reserve', 'reserve_date', 'reserve_time', 'store', 'menus'));
     }
 
     /**
@@ -155,9 +160,24 @@ class ReserveController extends Controller
      * @param  \App\Models\Reserve  $reserve
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Reserve $reserve)
+    public function update(Request $request, $id)
     {
-        //
+        $reserve = Reserve::find($id);
+        if(Auth::user()->id != $reserve->user_id){
+            session()->flash('msg_danger', '許可されていない操作です');
+            $messageKey = 'errorMessage';
+            $flashMessage = '投稿に失敗しました。';
+            return redirect(route('reserve.index'))->with($messageKey, $flashMessage);
+        } else {
+            $reserve->reserve_date = $request->reserve_date;
+            $reserve->reserve_time = $request->reserve_time;
+            $reserve->store_id = $request->store_id;
+            $reserve->menu_id = $request->menu_id;
+            $reserve->save();
+            $messageKey = 'successMessage';
+            $flashMessage = '更新に成功しました！';
+            return redirect(route('reserve.index'))->with($messageKey, $flashMessage);
+        }
     }
 
     /**

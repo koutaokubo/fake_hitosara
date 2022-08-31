@@ -18,6 +18,8 @@
                     <th scope="col"></th>
                     <th scope="col">お名前</th>
                     <th scope="col">お店</th>
+                    <th scope="col">お時間</th>
+                    <th scope="col">メニュー</th>
                 </tr>
             </thead>
         
@@ -26,6 +28,8 @@
                     <td>{{ $reserves[$i]->id }}</td>
                     <td>{{ Auth::user()->name }}</td>
                     <td>{{ $stores[$i]->name }}</td>
+                    <td>{{ $reserves[$i]->reserve_date }} {{$reserves[$i]->reserve_time }}</td>
+                    <td>{{ $menu->name }}</td>
                     <td>
                         <form action="{{route('reserve.edit', $reserves[$i])}}" method="get">
                             <input type="submit"  name="edit" value="編集">
@@ -54,7 +58,17 @@
         <p>予約はありません</p>
     <br>
 <a href="/home" class="btn btn-primary" role="button" data-bs-toggle="button">予約する</a>
-
+@endif
+@if (session('successMessage'))
+  <div class="alert alert-success text-center">
+    {{ session('successMessage') }}
+  </div> 
+@endif
+{{-- 失敗の時 --}}
+@if (session('errorMessage'))
+  <div class="alert alert-danger text-center">
+    {{ session('errorMessage') }}
+  </div> 
 @endif
 </div>
 </div>

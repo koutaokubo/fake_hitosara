@@ -88,7 +88,9 @@ Route::get('/reserve/list', [ReserveController::class, 'getReserveList'])->name(
 Route::resource('/reserve', ReserveController::class)
     ->names(['index' => 'reserve.index',
             'create' => 'reserve.create',
-            'store' => 'reserve.store'
+            'store' => 'reserve.store',
+            'edit' => 'reserve.edit',
+            'destroy' => 'reserve.delete',
             ])
     ->middleware('auth');
 

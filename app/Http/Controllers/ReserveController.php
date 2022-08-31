@@ -145,7 +145,7 @@ class ReserveController extends Controller
      */
     public function edit(Reserve $reserve)
     {
-        //
+        return view('Reserve.edit', $reserve);
     }
 
     /**
@@ -166,8 +166,10 @@ class ReserveController extends Controller
      * @param  \App\Models\Reserve  $reserve
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Reserve $reserve)
+    public function destroy($id)
     {
-        //
+        $reserve = Reserve::find($id);
+        $reserve->delete();
+        return redirect()->route('reserve.index');
     }
 }

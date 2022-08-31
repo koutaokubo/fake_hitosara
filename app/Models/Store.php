@@ -45,9 +45,11 @@ class Store extends Model
     public function getMenuList() {
         return $this->hasMany(Menu::class);
     }
+
     public function area(){
         return $this->belongsTo(Area::class);
     }
+    
     public function genre(){
         return $this->belongsTo(Genre::class);
     }

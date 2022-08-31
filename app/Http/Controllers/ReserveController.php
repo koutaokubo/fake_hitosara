@@ -94,6 +94,10 @@ class ReserveController extends Controller
         $numberOfDay = $dateTime->format('w');
         $user = User::find($request->user_id);
         $store = Store::find($request->store_id);
+        if ($request->time < $store->open_time || $request->time > $store->close_time) {
+            $flashMessage = '営業時間外です';
+            return redirect(route('reserve.create'))->with($flashMessage);
+        }
         $holiday = Holiday::where('store_id', '=', $request->store_id)->first();
         $holidays = $holiday->getHolidays();
         $key = "";

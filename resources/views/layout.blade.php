@@ -16,6 +16,8 @@
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <!------ Include the above in your HEAD tag ---------->
 
     <nav class="navbar navbar-icon-top navbar-expand-md navbar-dark bg-dark">
@@ -52,6 +54,13 @@
               </i>
               お問い合わせ
             </a>
+          </li>
+          <li class="nav-item">
+              @can('admin-higher')
+              <a href="{{route('reserve.list', ['id' => Auth::user()->id])}}" class="nav-link">
+                予約一覧（オーナー向け）
+              </a>
+              @endcan
           </li>
         </ul>
         <ul class="navbar-nav">

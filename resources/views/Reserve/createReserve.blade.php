@@ -9,7 +9,7 @@
     <form method="post" action="{{ route('reserve.confirm') }}" name="action" value="confirm">
         @csrf
         <div class="mt-4">
-            ご来店予定日 <input class="block mt-1 w-full" type="date" name="date"/>
+            ご来店予定日 <input class="block mt-1 w-full" type="date" min="{{$today}}" name="date"/>
         </div>
         <div class="mt-4">
             ご来店予定時間 <input class="block mt-1 w-full" type="time" name="time"/>

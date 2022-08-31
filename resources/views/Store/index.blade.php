@@ -23,11 +23,11 @@
             <th scope="col">住所</th>
             <th scope="col">営業開始時間</th>
             <th scope="col">営業終了時間</th>
-            <th scope="col">予約締切時間</th>
+            <th scope="col">最大予約数</th>
             <th scope="col"></th>
             <th scope="col"></th>
         </tr>
-    </thread>
+    </thead>
 
         @foreach ($stores as $store)
         <!-- 自分の作った店舗のみ・管理者のみ全店表示 -->

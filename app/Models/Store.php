@@ -39,15 +39,17 @@ class Store extends Model
     }
 
     public function getReserveList() {
-        return $this->belongsToMany(Reserve::class);
+        return $this->hasMany(Reserve::class);
     }
 
     public function getMenuList() {
         return $this->hasMany(Menu::class);
     }
+
     public function area(){
         return $this->belongsTo(Area::class);
     }
+    
     public function genre(){
         return $this->belongsTo(Genre::class);
     }

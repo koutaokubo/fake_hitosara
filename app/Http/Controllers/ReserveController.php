@@ -7,10 +7,12 @@ use App\Models\User;
 use App\Models\Store;
 use App\Models\Area;
 use App\Models\Holiday;
+use App\Models\Menu;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use DateTime;
+use date;
 // use App\Http\Requests\StoreRequest;
 
 class ReserveController extends Controller
@@ -37,12 +39,12 @@ class ReserveController extends Controller
         // $reserves = Reserve::where('user_id', $user->id)->get();
         $reserves = $user->reserves;
         // $stores = Store::all();
-        $stores = [];
         foreach ($reserves as $key => $reserve) {
             $store = Store::find($reserve->store_id);
             $stores[] = $store;
+            $menu = Menu::find($reserve->menu_id)->first();
         }
-        return view('Reserve.index',compact('reserves', 'stores'));
+        return view('Reserve.index',compact('reserves', 'stores', 'menu'));
     }
 
     public function getFavoriteUsers(Request $request) {
@@ -63,10 +65,9 @@ class ReserveController extends Controller
     }
 
     public function getReserveList(Request $request) {
-        $store = Store::find($request->id);
+        $store = Store::where('user_id', '=', $request->id)->first();
         $reserveList = $store->getReserveList;
-
-        return view('Reserve.reserveList', compact('reserveList'));
+        return view('Reserve.reserveList', compact('reserveList', 'store'));
     }
 
     /**
@@ -76,17 +77,33 @@ class ReserveController extends Controller
      */
     public function create(Request $request)
     {
+        $today = date('Y-m-d');
         $user = Auth::user();
         $store = Store::find($request->store_id);
         $menus = $store->getMenuList;
-        return view('Reserve.createReserve', compact('user', 'store', 'menus'));
+        return view('Reserve.createReserve', compact('user', 'store', 'menus', 'today'));
     }
 
     public function reserveConfirm(Request $request) {
+        // dd($request);
         $dateTime = new Datetime($request->date.$request->time);
+        $todate = new Datetime();
+        $user = User::find($request->user_id);
+        $store = Store::find($request->store_id);
+        $store_id = $request->store_id;
+        $menus = $store->getMenuList;
+        if ($dateTime < $todate) {
+            $today = date('Y-m-d');
+            // return redirect(route('reserve.create'))->with($flashMessage, $store_id);
+            return view('Reserve.createReserve', compact('store_id', 'today', 'store', 'menus', 'user'));
+        }
         $numberOfDay = $dateTime->format('w');
         $user = User::find($request->user_id);
         $store = Store::find($request->store_id);
+        if ($request->time < $store->open_time || $request->time > $store->close_time) {
+            $today = date('Y-m-d');
+            return view('Reserve.createReserve', compact('store_id', 'today', 'store', 'menus', 'user'));
+        }
         $holiday = Holiday::where('store_id', '=', $request->store_id)->first();
         $holidays = $holiday->getHolidays();
         $key = "";
@@ -120,7 +137,7 @@ class ReserveController extends Controller
         if(($store->reserve_limit - $numberOfSeats) > 0) {
             $reserve->fill($request->all())->save();
             $request->session()->regenerateToken();
-            return view('Reserve/finish', compact('numberOfSeats'));
+            return view('Reserve/complete', compact('numberOfSeats'));
         } else {
             echo ('sorry');
         }
@@ -145,7 +162,11 @@ class ReserveController extends Controller
      */
     public function edit(Reserve $reserve)
     {
-        //
+        $store = Store::where('id', $reserve->store_id)->first();
+        $menus = Menu::where('store_id', $store->id)->get();
+        $reserve_date = $reserve->reserve_date;
+        $reserve_time = $reserve->reserve_time;
+        return view('Reserve.edit', compact('reserve', 'reserve_date', 'reserve_time', 'store', 'menus'));
     }
 
     /**
@@ -155,9 +176,23 @@ class ReserveController extends Controller
      * @param  \App\Models\Reserve  $reserve
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Reserve $reserve)
+    public function update(Request $request, $id)
     {
-        //
+        $reserve = Reserve::find($id);
+        if(Auth::user()->id != $reserve->user_id){
+            $messageKey = 'errorMessage';
+            $flashMessage = '投稿に失敗しました。';
+            return redirect(route('reserve.index'))->with($messageKey, $flashMessage);
+        } else {
+            $reserve->reserve_date = $request->reserve_date;
+            $reserve->reserve_time = $request->reserve_time;
+            $reserve->store_id = $request->store_id;
+            $reserve->menu_id = $request->menu_id;
+            $reserve->save();
+            $messageKey = 'successMessage';
+            $flashMessage = '更新に成功しました！';
+            return redirect(route('reserve.index'))->with($messageKey, $flashMessage);
+        }
     }
 
     /**
@@ -166,8 +201,10 @@ class ReserveController extends Controller
      * @param  \App\Models\Reserve  $reserve
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Reserve $reserve)
+    public function destroy($id)
     {
-        //
+        $reserve = Reserve::find($id);
+        $reserve->delete();
+        return redirect()->route('reserve.index');
     }
 }

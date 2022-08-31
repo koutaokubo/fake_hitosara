@@ -83,9 +83,13 @@ class MypageController extends Controller
         }else{
             //更新保存
             if ($request->has('new_password')){
-                $user->password = bcrypt($request->new_password);
+                $user->forceFill([
+                    'password' => Hash::make($request->new_password)
+                ])->setRememberToken(Str::random(60));
             }else{
-                $user->password = bcrypt($request->password);
+                $user->forceFill([
+                    'password' => Hash::make($request->password)
+                ])->setRememberToken(Str::random(60));
             }
             $user->name = $request->name;
             $user->email = $request->email;
@@ -109,7 +113,12 @@ class MypageController extends Controller
     public function destroy($id)
     {
         //退会処理
-        Auth::find($id)->delete();
+        $user = Auth::user();
+        $user->delete();
         return redirect()->route('Mypage.thanks');
+    }
+    public function thanks($id)
+    {
+    return view('Mypage.thanks');
     }
 }

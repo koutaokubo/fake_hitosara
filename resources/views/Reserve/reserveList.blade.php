@@ -8,7 +8,11 @@
 <br>
     <h1>{{ $store->name }}</h1>
     @foreach ($reserveList as $reserve)
-        {{$reserve}}
+        <ul>
+            <li>
+                {{$reserve->reserve_date}} {{$reserve->reserve_time}}
+            </li>
+        </ul>
     @endforeach
 
 </div>

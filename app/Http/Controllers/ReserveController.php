@@ -39,10 +39,14 @@ class ReserveController extends Controller
         // $reserves = Reserve::where('user_id', $user->id)->get();
         $reserves = $user->reserves;
         // $stores = Store::all();
-        foreach ($reserves as $key => $reserve) {
-            $store = Store::find($reserve->store_id);
-            $stores[] = $store;
-            $menu = Menu::find($reserve->menu_id)->first();
+        $stores[] = null;
+        $menu = null;
+        if($reserves){
+            foreach ($reserves as $key => $reserve) {
+                $store = Store::find($reserve->store_id);
+                $stores[] = $store;
+                $menu = Menu::find($reserve->menu_id)->first();
+            }
         }
         return view('Reserve.index',compact('reserves', 'stores', 'menu'));
     }

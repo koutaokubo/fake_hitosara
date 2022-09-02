@@ -3,8 +3,11 @@
 @section('content')
 
 <div class = "container">
+<br>
+<h2>予約一覧</h2>
+<br>
 <div class="text-center">
-@if ($stores != null)
+@if ($stores)
     @if (Auth::check())
         {{-- @foreach ($reserves as $reserve)
             <p>{{$reserve->id}} {{ Auth::user()->name }}</p>

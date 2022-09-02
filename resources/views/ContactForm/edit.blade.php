@@ -48,9 +48,10 @@
 </table>
     @if($article->category_id == 2 && $send_user->role == 0)
     <form method="post" action="/contacts/{{$article->id}}">
+    <input type="hidden" name="_method" value="PUT">
       <input type="hidden" name="_method" value="PUT">
-      <input type="hidden" name="shop" value="{{ Auth::user()->role}}">
-      <input type="hidden" name = "send_user_id" value = {{$article->user_id}}>
+      <input type="hidden" name="shop" value= "{{ $send_user->role }}">
+      <input type="hidden" name = "send_user_id" value = "{{$article->user_id}}">
       <input type="submit" class="btn btn-primary" value="店舗承認">
       @csrf
     </form>

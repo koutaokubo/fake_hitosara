@@ -8,6 +8,7 @@
     {{-- @foreach ($stores as $store)
         <p>{{$store->id}}</p>
     @endforeach --}}
+@can('admin-higher')
 
 <br>
 <h2>登録店舗一覧</h2>
@@ -31,7 +32,8 @@
 
         @foreach ($stores as $store)
         <!-- 自分の作った店舗のみ・管理者のみ全店表示 -->
-        @if (Auth::check() && $store->user_id == Auth::user()->id || @can('system-only'))
+
+        @if (Auth::check() && $store->user_id == Auth::user()->id)
             <tr>
 
                 <td>{{ $store->name }}</td>
@@ -79,7 +81,6 @@
 @else
     <p>登録店舗なし</p>
 @endif
-
 <form action="store/create" method="GET">
     <div>
         <input type="submit" value="追加">
@@ -91,5 +92,7 @@
     <p>店舗登録がありません</p>
  @endif
 </div>
+@endcan
 </div>
 @endsection
+

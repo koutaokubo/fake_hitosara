@@ -117,7 +117,7 @@ class MypageController extends Controller
         $user->delete();
         return redirect()->route('Mypage.thanks');
     }
-    public function thanks($id)
+    public function thanks()
     {
     return view('Mypage.thanks');
     }
